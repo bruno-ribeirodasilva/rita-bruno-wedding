@@ -221,7 +221,7 @@
      7. RSVP FORM — validation + fetch POST
      ------------------------------------------------- */
   // IMPORTANT: Replace this URL with your Google Apps Script deployment URL
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjmLwIwqqh8LIplV-1FM3dkft1Ag3Z5yrhsIT1_-rc9OZLzR-cVVAcv4id_Msp9j9YIw/exec';
 
   var rsvpForm = document.getElementById('rsvp-form');
   var submitBtn = document.getElementById('rsvp-submit');
