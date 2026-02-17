@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rita & Bruno — 4 de Julho de 2026</title>
+  <meta name="description" content="Rita e Bruno casam-se a 4 de Julho de 2026 em Marco de Canaveses. Confirme a sua presença.">
+  <meta property="og:title" content="Rita & Bruno — 4 de Julho de 2026">
+  <meta property="og:description" content="Rita e Bruno casam-se a 4 de Julho de 2026 em Marco de Canaveses.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://rita-bruno.pt/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://rita-bruno.pt">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div class="preloader" id="preloader">
+    <img src="img/logo-couple.png" alt="" class="preloader__logo">
+  </div>
+
+  <!-- ===== SCROLL PROGRESS BAR ===== -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#hero" class="navbar__monogram">
+        <img src="img/logo-couple.png" alt="Rita & Bruno" class="navbar__logo">
+      </a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="#informacoes">O Dia</a></li>
+        <li><a href="#como-chegar">Como Chegar</a></li>
+        <li><a href="#onde-ficar">Onde Ficar</a></li>
+        <li><a href="#faq">Perguntas Frequentes</a></li>
+        <li><a href="#rsvp">RSVP</a></li>
+        <li><a href="#presentes">Presentes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <h1 class="hero__names">
+        <span class="hero__name">Rita</span>
+        <span class="hero__ampersand">e</span>
+        <span class="hero__name">Bruno</span>
+      </h1>
+      <p class="hero__date">4 de Julho de 2026</p>
+      <div class="hero__countdown" id="countdown">
+        <div class="countdown__item">
+          <span class="countdown__number" id="countdown-days">---</span>
+          <span class="countdown__label">dias</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__number" id="countdown-hours">--</span>
+          <span class="countdown__label">horas</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__number" id="countdown-minutes">--</span>
+          <span class="countdown__label">minutos</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__number" id="countdown-seconds">--</span>
+          <span class="countdown__label">segundos</span>
+        </div>
+      </div>
+      <a href="#rsvp" class="hero__cta">Confirmar Presença</a>
+    </div>
+    <div class="hero__scroll-arrow" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 6 15 12 9 18"></polyline>
+      </svg>
+    </div>
+    <!-- Wave: hero → marquee -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,40 1440,30 L1440,60 L0,60Z" fill="#FFF8F2"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE STRIP ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+      <img src="img/logo-couple.png" alt="" class="marquee__img">
+      <span class="marquee__dot"></span>
+    </div>
+  </div>
+
+  <!-- ===== INFORMAÇÕES ===== -->
+  <section class="section section--cream" id="informacoes">
+    <div class="container">
+      <h2 class="section__title fade-in">O Dia</h2>
+      <div class="timeline fade-in">
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 3v2M14 23v2M7 7l6 6M15 13l6-6M4 14h3M21 14h3M7 25h14M9 25V14l5-7 5 7v11"/>
+              <line x1="14" y1="7" x2="14" y2="5"/>
+              <path d="M12 25v-4h4v4"/>
+            </svg>
+          </div>
+          <div class="timeline__time">14h00</div>
+          <div class="timeline__content">
+            <h3>Cerimónia Religiosa</h3>
+            <p>Igreja de São Martinho de Soalhães</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 22l2-9h10l2 9"/>
+              <path d="M10 13c0-3 1-6 4-9 3 3 4 6 4 9"/>
+              <line x1="5" y1="22" x2="23" y2="22"/>
+              <path d="M9 22v3M19 22v3"/>
+            </svg>
+          </div>
+          <div class="timeline__time">~16h00</div>
+          <div class="timeline__content">
+            <h3>Copo d'Água</h3>
+            <p>Casa de Quintã</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10" cy="18" r="4"/>
+              <circle cx="18" cy="14" r="4"/>
+              <path d="M14 18v-8"/>
+              <path d="M14 10l4-2"/>
+              <path d="M6 18v4M22 14v4"/>
+            </svg>
+          </div>
+          <div class="timeline__time">~23h00</div>
+          <div class="timeline__content">
+            <h3>Festa</h3>
+            <p>Vamos celebrar!</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="14" cy="14" r="10"/>
+              <path d="M14 8v6l4 2"/>
+            </svg>
+          </div>
+          <div class="timeline__time">4h00</div>
+          <div class="timeline__content">
+            <h3>Fim da Festa</h3>
+            <p>Boa noite!</p>
+          </div>
+        </div>
+      </div>
+      <div class="dress-code fade-in">
+        <p class="dress-code__label">Dress Code</p>
+        <p class="dress-code__text">Vestido formal · fraque ou fato escuro</p>
+      </div>
+    </div>
+    <!-- Wave: informações → gallery -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C240,55 480,5 720,30 C960,55 1200,10 1440,25 L1440,60 L0,60Z" fill="#f6dfe2"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== GALERIA ===== -->
+  <div class="gallery-strip" id="galeria">
+    <div class="gallery fade-in">
+      <button class="gallery__arrow gallery__arrow--prev" id="gallery-prev" aria-label="Anterior">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <div class="gallery__track" id="gallery-track">
+        <div class="gallery__item">
+          <img class="gallery__img" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <button class="gallery__arrow gallery__arrow--next" id="gallery-next" aria-label="Seguinte">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+    <!-- Wave: gallery → como chegar -->
+    <div class="section-divider section-divider--gallery" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,35 C320,5 640,55 960,25 C1120,12 1300,40 1440,20 L1440,60 L0,60Z" fill="#FFF8F2"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== COMO CHEGAR ===== -->
+  <section class="section section--cream" id="como-chegar">
+    <div class="container">
+      <h2 class="section__title fade-in">Como Chegar</h2>
+      <div class="locations">
+        <div class="location-card fade-in">
+          <h3 class="location-card__title">Cerimónia</h3>
+          <p class="location-card__name">Igreja de São Martinho de Soalhães</p>
+          <p class="location-card__address">Soalhães, Marco de Canaveses</p>
+          <div class="location-card__map">
+            <iframe
+              src="https://maps.google.com/maps?q=41.160537,-8.096775&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa da Igreja de São Martinho de Soalhães">
+            </iframe>
+          </div>
+          <a href="https://maps.google.com/?q=41.160537,-8.096775"
+             class="location-card__link" target="_blank" rel="noopener noreferrer">
+            Abrir no Google Maps →
+          </a>
+        </div>
+        <div class="location-card fade-in">
+          <h3 class="location-card__title">Copo d'Água</h3>
+          <p class="location-card__name">Casa de Quintã</p>
+          <p class="location-card__address">Rua de Quintã 830, Soalhães, Marco de Canaveses</p>
+          <div class="location-card__map">
+            <iframe
+              src="https://maps.google.com/maps?q=41.159360,-8.123467&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa da Casa de Quintã">
+            </iframe>
+          </div>
+          <a href="https://maps.google.com/?q=41.159360,-8.123467"
+             class="location-card__link" target="_blank" rel="noopener noreferrer">
+            Abrir no Google Maps →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ONDE FICAR ===== -->
+  <section class="section section--blush" id="onde-ficar">
+    <div class="container">
+      <h2 class="section__title fade-in">Onde Ficar</h2>
+      <p class="section__subtitle fade-in">Sugestões de alojamento na região</p>
+      <div class="hotels">
+        <div class="hotel-card fade-in">
+          <h3 class="hotel-card__name">Hotel Placeholder 1</h3>
+          <p class="hotel-card__address">Morada a definir</p>
+          <p class="hotel-card__distance">~10 min do local</p>
+          <a href="#" class="hotel-card__link" target="_blank" rel="noopener noreferrer">Ver website →</a>
+        </div>
+        <div class="hotel-card fade-in">
+          <h3 class="hotel-card__name">Hotel Placeholder 2</h3>
+          <p class="hotel-card__address">Morada a definir</p>
+          <p class="hotel-card__distance">~15 min do local</p>
+          <a href="#" class="hotel-card__link" target="_blank" rel="noopener noreferrer">Ver website →</a>
+        </div>
+        <div class="hotel-card fade-in">
+          <h3 class="hotel-card__name">Hotel Placeholder 3</h3>
+          <p class="hotel-card__address">Morada a definir</p>
+          <p class="hotel-card__distance">~20 min do local</p>
+          <a href="#" class="hotel-card__link" target="_blank" rel="noopener noreferrer">Ver website →</a>
+        </div>
+      </div>
+    </div>
+    <!-- Wave: onde ficar → FAQ -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,25 C360,55 720,5 1080,35 C1260,47 1380,20 1440,30 L1440,60 L0,60Z" fill="#FFF8F2"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section--cream" id="faq">
+    <div class="container container--narrow">
+      <h2 class="section__title fade-in">Perguntas Frequentes</h2>
+      <div class="faq fade-in">
+        <details class="faq__item">
+          <summary class="faq__question">Até quando devo confirmar presença?</summary>
+          <div class="faq__answer">
+            <p>Pedimos, por favor, que confirme a sua presença até <strong>1 de maio de 2026</strong>. Pode fazê-lo através do formulário RSVP nesta página.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Qual é o dress code?</summary>
+          <div class="faq__answer">
+            <p>Traje formal — vestido comprido ou cocktail para as senhoras, fato escuro ou fraque para os senhores. O mais importante é que se sinta confortável e elegante.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Posso levar acompanhante?</summary>
+          <div class="faq__answer">
+            <p>Os convites são pessoais e destinam-se apenas às pessoas indicadas. Se tiver dúvidas, não hesite em contactar-nos diretamente.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">O casamento é ao ar livre?</summary>
+          <div class="faq__answer">
+            <p>A cerimónia religiosa será na Igreja de São Martinho de Soalhães (interior). A receção e festa serão na Casa de Quintã, com espaços interiores e exteriores. Temos plano alternativo em caso de mau tempo.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Há estacionamento no local?</summary>
+          <div class="faq__answer">
+            <p>Sim. Mais perto da data, indicaremos as coordenadas exatas dos locais de estacionamento disponíveis junto à igreja e à Casa de Quintã.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Acomodam restrições alimentares?</summary>
+          <div class="faq__answer">
+            <p>Claro! Pedimos que indique quaisquer restrições ou alergias alimentares no formulário de confirmação de presença para que possamos garantir opções adequadas para todos.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Posso levar crianças?</summary>
+          <div class="faq__answer">
+            <p>As crianças são bem-vindas! Por favor, indique o número de crianças no formulário RSVP para que possamos preparar tudo.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+    <!-- Wave: FAQ → RSVP -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,5 480,50 720,25 C960,0 1200,45 1440,20 L1440,60 L0,60Z" fill="#f6dfe2"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== RSVP ===== -->
+  <section class="section section--blush" id="rsvp">
+    <div class="container container--narrow">
+      <h2 class="section__title fade-in">Confirme a sua Presença</h2>
+      <p class="section__subtitle fade-in">Por favor, confirme até 1 de maio de 2026</p>
+      <form class="rsvp-form fade-in" id="rsvp-form" novalidate>
+        <div class="form-group">
+          <label for="rsvp-name">Nome completo *</label>
+          <input type="text" id="rsvp-name" name="nome" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="rsvp-email">Email *</label>
+          <input type="email" id="rsvp-email" name="email" required autocomplete="email">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-adults">Nº de adultos *</label>
+            <input type="number" id="rsvp-adults" name="adultos" min="1" value="1" required>
+          </div>
+          <div class="form-group">
+            <label for="rsvp-children">Nº de crianças</label>
+            <input type="number" id="rsvp-children" name="criancas" min="0" value="0">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rsvp-dietary">Restrições alimentares</label>
+          <textarea id="rsvp-dietary" name="restricoes" rows="2" placeholder="Ex: vegetariano, sem glúten..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Confirma presença? *</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="presenca" value="Sim" required>
+              <span>Sim, estarei presente</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="presenca" value="Não">
+              <span>Não poderei estar presente</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rsvp-message">Mensagem aos noivos</label>
+          <textarea id="rsvp-message" name="mensagem" rows="3" placeholder="Deixe-nos uma mensagem (opcional)"></textarea>
+        </div>
+        <button type="submit" class="rsvp-form__submit" id="rsvp-submit">
+          <span class="rsvp-form__submit-text">Enviar Confirmação</span>
+          <span class="rsvp-form__submit-loading" hidden>A enviar...</span>
+        </button>
+        <div class="rsvp-form__feedback" id="rsvp-feedback" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== LISTA DE PRESENTES ===== -->
+  <section class="section section--blush" id="presentes">
+    <div class="container container--narrow">
+      <div class="presentes fade-in">
+        <p class="presentes__heading">Presentes</p>
+        <div class="presentes__line"></div>
+        <p class="presentes__message">
+          O nosso maior presente será a vossa presença.
+        </p>
+        <p class="presentes__sub">
+          Mas se desejarem contribuir para a nossa nova vida a dois
+          e para a nossa lua de mel, ficamos muito gratos.
+        </p>
+        <div class="presentes__iban-box">
+          <p class="presentes__iban-label">Transferência Bancária</p>
+          <p class="presentes__iban" id="iban-number">PT50 XXXX XXXX XXXX XXXX XXXX X</p>
+          <button class="presentes__copy-btn" id="copy-iban" type="button">Copiar IBAN</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <img src="img/logo-couple.png" alt="Rita & Bruno" class="footer__logo">
+        <p class="footer__names">não importa onde</p>
+        <div class="footer__contacts">
+          <a href="tel:+351914454190">Rita · 914 454 190</a>
+          <a href="tel:+351913845226">Bruno · 913 845 226</a>
+        </div>
+      </div>
+      <div class="footer__divider"></div>
+      <div class="footer__bottom">
+        <p class="footer__made">
+          Feito com
+          <span class="footer__spinner">
+            <span class="footer__spinner-track">
+              <span>amor</span>
+              <span>saudade</span>
+              <span>alegria</span>
+              <span>carinho</span>
+              <span>amor</span>
+            </span>
+          </span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+    <span class="theme-toggle__icon theme-toggle__icon--light">&#9790;</span>
+    <span class="theme-toggle__icon theme-toggle__icon--dark">&#9788;</span>
+  </button>
+
+  <!-- Toast notification for IBAN copy -->
+  <div class="toast" id="toast" hidden>Copiado!</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1/dist/confetti.browser.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

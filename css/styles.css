@@ -1,0 +1,1893 @@
+/* ===================================================
+   Rita & Bruno — Wedding Website
+   Mobile-first CSS
+   =================================================== */
+
+/* --- @font-face — Self-hosted fonts --- */
+@font-face {
+  font-family: 'Brasika Display';
+  src: url('../fonts/brasika-display-trial.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Souvenir';
+  src: url('../fonts/itc-souvenir/Souvenir-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Souvenir';
+  src: url('../fonts/itc-souvenir/Souvenir-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Souvenir';
+  src: url('../fonts/itc-souvenir/Souvenir-Demi.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Souvenir';
+  src: url('../fonts/itc-souvenir/Souvenir-DemiItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Souvenir';
+  src: url('../fonts/itc-souvenir/Souvenir-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Souvenir';
+  src: url('../fonts/itc-souvenir/Souvenir-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Animated custom property for hero glow --- */
+@property --hero-glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* --- Custom Properties --- */
+:root {
+  --color-blush: #f6dfe2;
+  --color-hotpink: #c22656;
+  --color-forest: #32563b;
+  --color-sage: #849b6f;
+  --color-coral: #ff6c2b;
+  --color-cream: #FFF8F2;
+  --color-white: #FFFFFF;
+
+  --font-display: 'Brasika Display', Georgia, serif;
+  --font-body: 'Souvenir', 'Bookman Old Style', Georgia, serif;
+
+  --container-max: 1100px;
+  --container-narrow: 680px;
+  --section-padding: 5rem 1.5rem;
+  --nav-height: 90px;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-forest);
+  background-color: var(--color-blush);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-forest);
+  text-decoration: none;
+}
+
+/* ===================================================
+   PRELOADER
+   =================================================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.preloader__logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes preloaderPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+.preloader.is-loaded {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* ===================================================
+   SCROLL PROGRESS BAR
+   =================================================== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10000;
+  background: linear-gradient(90deg, var(--color-coral), var(--color-hotpink));
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* ===================================================
+   CUSTOM CURSOR
+   =================================================== */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+
+.cursor__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-hotpink);
+  position: absolute;
+  top: -3px;
+  left: -3px;
+}
+
+.cursor__ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-coral);
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.cursor.is-hovering .cursor__ring {
+  transform: scale(1.5);
+  border-color: var(--color-hotpink);
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none !important; }
+}
+
+/* Hide default cursor on hover devices */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+  a, button, input, textarea, select, label, [role="button"] { cursor: none; }
+}
+
+/* ===================================================
+   SECTION DIVIDERS — SVG waves
+   =================================================== */
+.section-divider {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 1;
+}
+
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+.section-divider--gallery {
+  position: relative;
+  margin-top: -1px;
+}
+
+/* --- Utility --- */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+/* --- Fade-in animation (JS IntersectionObserver fallback) --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Scroll-driven animations (progressive enhancement) --- */
+@keyframes scrollFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: scrollFadeIn both ease;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+    transition: none;
+  }
+
+  .fade-in.is-visible {
+    /* Let scroll-driven animation take over */
+    opacity: unset;
+    transform: unset;
+  }
+}
+
+/* ===================================================
+   1. NAVBAR
+   =================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+              backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+}
+
+.navbar.is-scrolled {
+  background-color: rgba(255, 248, 242, 0.75);
+  backdrop-filter: blur(12px) saturate(1.8);
+  -webkit-backdrop-filter: blur(12px) saturate(1.8);
+  box-shadow: 0 1px 10px rgba(255, 108, 43, 0.06);
+}
+
+.navbar__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__monogram {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.navbar__logo {
+  height: 110px;
+  width: auto;
+  object-fit: contain;
+  filter: saturate(1.4) contrast(1.15);
+  drop-shadow: 0 2px 12px rgba(194, 38, 86, 0.25);
+  -webkit-filter: saturate(1.4) contrast(1.15) drop-shadow(0 2px 12px rgba(194, 38, 86, 0.25));
+  filter: saturate(1.4) contrast(1.15) drop-shadow(0 2px 12px rgba(194, 38, 86, 0.25));
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 40%, transparent 70%);
+  border-radius: 50%;
+  padding: 4px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.navbar__logo:hover {
+  transform: scale(1.08);
+  filter: saturate(1.6) contrast(1.2) drop-shadow(0 4px 16px rgba(194, 38, 86, 0.35));
+}
+
+.navbar__links {
+  display: none;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navbar__links a {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: var(--color-forest);
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.navbar__links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-hotpink), var(--color-coral));
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.navbar__links a:hover {
+  color: var(--color-hotpink);
+}
+
+.navbar__links a:hover::after,
+.navbar__links a.is-active::after {
+  width: 100%;
+}
+
+/* Hamburger */
+.navbar__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background-color: var(--color-forest);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar__hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile overlay */
+.navbar__links.is-open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-cream);
+  gap: 2.5rem;
+  z-index: 1000;
+}
+
+.navbar__links.is-open a {
+  font-size: 1.3rem;
+}
+
+/* ===================================================
+   2. HERO
+   =================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--color-blush);
+  overflow: hidden;
+  padding: 2rem 1.5rem;
+}
+
+/* Animated watercolor accents with parallax */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(255, 108, 43, 0.25) 0%, rgba(194, 38, 86, 0.1) 50%, transparent 70%);
+  pointer-events: none;
+  --hero-glow-angle: 0deg;
+  animation: heroGlow 12s ease-in-out infinite alternate;
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.3));
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  left: -15%;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 60%, rgba(194, 38, 86, 0.2) 0%, rgba(132, 155, 111, 0.1) 50%, transparent 70%);
+  pointer-events: none;
+  animation: heroGlow 12s ease-in-out infinite alternate-reverse;
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.15));
+}
+
+/* Hero background layer — ready for future photo */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+@keyframes heroGlow {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+  100% { transform: scale(1.15) translate(3%, 3%); opacity: 1; }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 1.5rem;
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--color-hotpink);
+  line-height: 1.1;
+}
+
+.hero__name:last-child {
+  color: var(--color-forest);
+}
+
+.hero__ampersand {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: var(--color-coral);
+  opacity: 0.35;
+  line-height: 1.2;
+  margin: -0.1em 0;
+}
+
+.hero__date {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+  text-wrap: balance;
+  margin-bottom: 2.5rem;
+}
+
+.hero__countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.countdown__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown__number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--color-hotpink);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.5ch;
+  text-align: center;
+}
+
+.countdown__label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+  margin-top: 0.25rem;
+}
+
+.hero__cta {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: linear-gradient(135deg, var(--color-coral) 0%, var(--color-hotpink) 100%);
+  background-size: 200% 200%;
+  animation: ctaGradient 4s ease infinite;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.hero__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 108, 43, 0.3);
+}
+
+.hero__cta:hover::after {
+  left: 100%;
+}
+
+@keyframes ctaGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Scroll arrow */
+.hero__scroll-arrow {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-forest);
+  opacity: 0.5;
+  animation: bounce 2s infinite;
+  z-index: 1;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ===================================================
+   2b. MARQUEE — Auto-scrolling logo strip
+   =================================================== */
+.marquee {
+  overflow: hidden;
+  padding: 1.5rem 0;
+  background-color: var(--color-cream);
+  border-top: 1px solid rgba(50, 86, 59, 0.06);
+  border-bottom: 1px solid rgba(50, 86, 59, 0.06);
+}
+
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+.marquee__img {
+  height: 80px;
+  width: auto;
+  opacity: 0.18;
+  flex-shrink: 0;
+}
+
+.marquee__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-hotpink);
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===================================================
+   3. SECTIONS (shared)
+   =================================================== */
+.section {
+  padding: var(--section-padding);
+  position: relative;
+  overflow: hidden;
+}
+
+.section--cream {
+  background-color: var(--color-cream);
+}
+
+.section--blush {
+  background-color: var(--color-blush);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: var(--color-hotpink);
+  text-align: center;
+  text-wrap: balance;
+  margin-bottom: 0.75rem;
+}
+
+.section__subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: var(--color-forest);
+  text-align: center;
+  text-wrap: balance;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+/* ===================================================
+   4. INFORMAÇÕES — Timeline (horizontal)
+   =================================================== */
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2.5rem auto;
+  max-width: 900px;
+}
+
+/* Horizontal connecting line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: calc(1.75rem - 1px);
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-coral), var(--color-hotpink));
+  opacity: 0.25;
+}
+
+.timeline__item {
+  position: relative;
+  text-align: center;
+  padding-top: 4.5rem;
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+/* Icon circle sitting ON the line */
+.timeline__icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cream);
+  color: var(--color-coral);
+  border-radius: 50%;
+  border: 2px solid var(--color-coral);
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline__item:hover .timeline__icon {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 4px 16px rgba(255, 108, 43, 0.2);
+}
+
+.timeline__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.timeline__time {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-hotpink);
+  margin-bottom: 0.15rem;
+}
+
+.timeline__content h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-forest);
+  margin-bottom: 0.1rem;
+}
+
+.timeline__content p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--color-forest);
+  opacity: 0.65;
+}
+
+/* Stack on small screens */
+@media (max-width: 599px) {
+  .timeline {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 1rem;
+  }
+
+  .timeline::before {
+    display: none;
+  }
+
+  .timeline__item::before {
+    display: none;
+  }
+}
+
+/* Dress code */
+.dress-code {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1.5rem 2rem;
+  background: rgba(246, 223, 226, 0.5);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dress-code__label {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-hotpink);
+  margin-bottom: 0.5rem;
+}
+
+.dress-code__text {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--color-forest);
+}
+
+/* ===================================================
+   5. GALERIA — Fluid strip interlude
+   =================================================== */
+.gallery-strip {
+  padding: 2rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery {
+  position: relative;
+}
+
+.gallery__track {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 1.5rem;
+  scrollbar-width: none;
+}
+
+.gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery__item {
+  flex: 0 0 72%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+}
+
+/* Liquid glass overlay on hover */
+.gallery__item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gallery__item:hover::after {
+  opacity: 1;
+}
+
+.gallery__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 20px;
+  background-color: var(--color-blush);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s ease;
+}
+
+.gallery__item:hover .gallery__img {
+  transform: scale(1.05);
+}
+
+.gallery__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px) saturate(1.8);
+  -webkit-backdrop-filter: blur(16px) saturate(1.8);
+  color: var(--color-forest);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s ease, color 0.3s ease,
+              transform 0.3s ease, box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.gallery__arrow:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.gallery__arrow--prev {
+  left: 0.75rem;
+}
+
+.gallery__arrow--next {
+  right: 0.75rem;
+}
+
+/* ===================================================
+   6. COMO CHEGAR — Locations
+   =================================================== */
+.locations {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.location-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.location-card__title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--color-hotpink);
+  margin-bottom: 0.5rem;
+}
+
+.location-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-forest);
+  margin-bottom: 0.25rem;
+}
+
+.location-card__address {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-forest);
+  opacity: 0.7;
+  margin-bottom: 1.25rem;
+}
+
+.location-card__map {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.location-card__map iframe {
+  display: block;
+}
+
+.location-card__link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-hotpink);
+  transition: opacity 0.2s ease;
+}
+
+.location-card__link:hover {
+  opacity: 0.7;
+}
+
+/* ===================================================
+   7. ONDE FICAR — Hotels
+   =================================================== */
+.hotels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.hotel-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 1.75rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.hotel-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.hotel-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-forest);
+  margin-bottom: 0.5rem;
+}
+
+.hotel-card__address {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-forest);
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+.hotel-card__distance {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-coral);
+  margin-bottom: 1rem;
+}
+
+.hotel-card__link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-hotpink);
+  transition: opacity 0.2s ease;
+}
+
+.hotel-card__link:hover {
+  opacity: 0.7;
+}
+
+/* ===================================================
+   7b. FAQ — Accordion
+   =================================================== */
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+}
+
+.faq__item {
+  border-bottom: 1px solid rgba(50, 86, 59, 0.1);
+}
+
+.faq__item:first-child {
+  border-top: 1px solid rgba(50, 86, 59, 0.1);
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-forest);
+  padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.2s ease;
+}
+
+.faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq__question::marker {
+  content: '';
+}
+
+.faq__question::after {
+  content: '+';
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-hotpink);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.faq__item[open] > .faq__question::after {
+  transform: rotate(45deg);
+}
+
+.faq__item[open] > .faq__question {
+  color: var(--color-hotpink);
+}
+
+.faq__question:hover {
+  color: var(--color-hotpink);
+}
+
+.faq__answer {
+  overflow: hidden;
+  padding: 0 0 1.25rem;
+}
+
+.faq__answer p {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-forest);
+  opacity: 0.85;
+}
+
+/* Animate details open/close */
+.faq__item {
+  --faq-timing: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes faqSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq__item[open] .faq__answer {
+  animation: faqSlideDown var(--faq-timing) both;
+}
+
+/* ===================================================
+   8. RSVP — Form
+   =================================================== */
+.rsvp-form {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-forest);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-forest);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-coral);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-hotpink);
+  box-shadow: 0 0 0 3px rgba(194, 38, 86, 0.1);
+}
+
+.form-group input.is-invalid,
+.form-group textarea.is-invalid {
+  border-color: #c0392b;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Radio group */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.radio-label input[type="radio"] {
+  accent-color: var(--color-hotpink);
+  width: 18px;
+  height: 18px;
+}
+
+/* Submit button */
+.rsvp-form__submit {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: linear-gradient(135deg, var(--color-hotpink) 0%, var(--color-coral) 100%);
+  background-size: 200% 200%;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.rsvp-form__submit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.rsvp-form__submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(194, 38, 86, 0.3);
+}
+
+.rsvp-form__submit:hover:not(:disabled)::after {
+  left: 100%;
+}
+
+.rsvp-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Feedback */
+.rsvp-form__feedback {
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.rsvp-form__feedback.is-success {
+  background-color: rgba(132, 155, 111, 0.15);
+  color: var(--color-forest);
+}
+
+.rsvp-form__feedback.is-error {
+  background-color: rgba(194, 38, 86, 0.1);
+  color: var(--color-hotpink);
+}
+
+/* ===================================================
+   9. LISTA DE PRESENTES
+   =================================================== */
+.presentes {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.presentes__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  color: var(--color-hotpink);
+  margin-bottom: 1.5rem;
+}
+
+.presentes__line {
+  width: 50px;
+  height: 1px;
+  background: var(--color-hotpink);
+  margin: 0 auto 2rem;
+  opacity: 0.4;
+}
+
+.presentes__message {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+  line-height: 1.5;
+  color: var(--color-forest);
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+
+.presentes__sub {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-forest);
+  opacity: 0.65;
+  margin-bottom: 3rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+.presentes__iban-box {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.presentes__iban-box:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.presentes__iban-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+  opacity: 0.5;
+  margin-bottom: 0.75rem;
+}
+
+.presentes__iban {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(1rem, 3vw, 1.35rem);
+  color: var(--color-forest);
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+  word-break: break-all;
+}
+
+.presentes__copy-btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--color-hotpink);
+  background: none;
+  border: 2px solid var(--color-hotpink);
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.presentes__copy-btn:hover {
+  background-color: var(--color-hotpink);
+  color: var(--color-white);
+}
+
+.presentes__copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===================================================
+   10. FOOTER
+   =================================================== */
+.footer {
+  background-color: var(--color-forest);
+  color: var(--color-white);
+  text-align: center;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.footer__top {
+  margin-bottom: 1.25rem;
+}
+
+.footer__logo {
+  height: 150px;
+  width: auto;
+  margin: 0 auto 0.2rem;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.footer__names {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+  transform: rotate(-1.5deg);
+  font-style: italic;
+}
+
+.footer__date {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.footer__divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  margin: 0 auto 1.25rem;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer__contacts a {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+
+.footer__contacts a:hover {
+  color: var(--color-white);
+}
+
+/* "Feito com [rotating word]" spinner */
+.footer__made {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.footer__spinner {
+  display: inline-block;
+  height: 1.3em;
+  overflow: hidden;
+  vertical-align: bottom;
+  position: relative;
+}
+
+.footer__spinner-track {
+  display: flex;
+  flex-direction: column;
+  animation: footerSpin 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.footer__spinner-track span {
+  display: block;
+  height: 1.3em;
+  line-height: 1.3em;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+@keyframes footerSpin {
+  0%, 18%   { transform: translateY(0); }
+  20%, 38%  { transform: translateY(-1.3em); }
+  40%, 58%  { transform: translateY(-2.6em); }
+  60%, 78%  { transform: translateY(-3.9em); }
+  80%, 100% { transform: translateY(-5.2em); }
+}
+
+/* ===================================================
+   11. TOAST
+   =================================================== */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: var(--color-forest);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===================================================
+   THEME TOGGLE BUTTON
+   =================================================== */
+.theme-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9998;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(50, 86, 59, 0.15);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px) saturate(1.6);
+  -webkit-backdrop-filter: blur(12px) saturate(1.6);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle__icon { display: none; }
+.theme-toggle__icon--light { display: inline; }
+
+/* ===================================================
+   DARK MODE — Pink ↔ Green flip (original palette only)
+   =================================================== */
+[data-theme="dark"] {
+  --color-blush: #32563b;     /* forest → main bg */
+  --color-cream: #3d6847;     /* lighter forest → alt bg */
+  --color-white: #2a4a33;     /* darker forest → cards/inputs */
+  --color-forest: #f6dfe2;    /* light pink → all text */
+  --color-hotpink: #f6dfe2;   /* light pink → titles */
+  --color-coral: #c22656;     /* hard pink → details & lines */
+  --color-sage: #849b6f;      /* sage stays */
+}
+
+/* Hero names — Rita hard pink, Bruno light green */
+[data-theme="dark"] .hero__name:first-child {
+  color: #c22656;
+  text-shadow: 0 0 30px rgba(194, 38, 86, 0.5);
+}
+
+[data-theme="dark"] .hero__name:last-child {
+  color: #849b6f;
+}
+
+[data-theme="dark"] .hero__ampersand {
+  color: #c22656;
+}
+
+/* Buttons — hard pink gradient with white text */
+[data-theme="dark"] .hero__cta,
+[data-theme="dark"] .rsvp-form__submit {
+  background: linear-gradient(135deg, #c22656 0%, #ff6c2b 100%);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .presentes__copy-btn {
+  color: #c22656;
+  border-color: #c22656;
+}
+
+[data-theme="dark"] .presentes__copy-btn:hover {
+  background-color: #c22656;
+  color: #FFFFFF;
+}
+
+/* Radio accent — hard pink */
+[data-theme="dark"] .radio-label input[type="radio"] {
+  accent-color: #c22656;
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: rgba(50, 86, 59, 0.6);
+  border-color: rgba(246, 223, 226, 0.15);
+}
+
+[data-theme="dark"] .theme-toggle__icon--light { display: none; }
+[data-theme="dark"] .theme-toggle__icon--dark { display: inline; color: #f6dfe2; }
+
+/* Glass cards — dark green glass */
+[data-theme="dark"] .location-card,
+[data-theme="dark"] .hotel-card,
+[data-theme="dark"] .presentes__iban-box,
+[data-theme="dark"] .dress-code {
+  background: rgba(42, 74, 51, 0.6);
+  border-color: rgba(246, 223, 226, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .location-card:hover,
+[data-theme="dark"] .hotel-card:hover,
+[data-theme="dark"] .presentes__iban-box:hover {
+  background: rgba(42, 74, 51, 0.8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Navbar glass */
+[data-theme="dark"] .navbar.is-scrolled {
+  background-color: rgba(50, 86, 59, 0.8);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile menu */
+[data-theme="dark"] .navbar__links.is-open {
+  background-color: #3d6847;
+}
+
+/* Form inputs */
+[data-theme="dark"] .form-group input[type="text"],
+[data-theme="dark"] .form-group input[type="email"],
+[data-theme="dark"] .form-group input[type="number"],
+[data-theme="dark"] .form-group textarea {
+  background-color: rgba(42, 74, 51, 0.5);
+  color: #FFF8F2;
+  border-color: rgba(246, 223, 226, 0.2);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus {
+  border-color: #f6dfe2;
+  box-shadow: 0 0 0 3px rgba(246, 223, 226, 0.15);
+}
+
+/* Footer — use original forest (not the swapped variable) */
+[data-theme="dark"] .footer {
+  background-color: #243a2b;
+}
+
+/* Toast */
+[data-theme="dark"] .toast {
+  background-color: #f6dfe2;
+  color: #32563b;
+}
+
+/* Preloader */
+[data-theme="dark"] .preloader {
+  background-color: #32563b;
+}
+
+/* Marquee */
+[data-theme="dark"] .marquee {
+  border-color: rgba(246, 223, 226, 0.06);
+}
+
+/* Timeline icons */
+[data-theme="dark"] .timeline__icon {
+  background-color: #3d6847;
+  border-color: #c22656;
+  color: #c22656;
+}
+
+/* SVG divider fills */
+[data-theme="dark"] .section-divider path[fill="#FFF8F2"] {
+  fill: #3d6847;
+}
+
+[data-theme="dark"] .section-divider path[fill="#f6dfe2"] {
+  fill: #32563b;
+}
+
+/* Footer logo */
+[data-theme="dark"] .footer__logo {
+  filter: brightness(0) invert(0.9);
+}
+
+/* Gallery arrows */
+[data-theme="dark"] .gallery__arrow {
+  background: rgba(42, 74, 51, 0.5);
+  border-color: rgba(246, 223, 226, 0.1);
+}
+
+[data-theme="dark"] .gallery__arrow:hover {
+  background: rgba(42, 74, 51, 0.7);
+  border-color: rgba(246, 223, 226, 0.2);
+}
+
+/* ===================================================
+   ACCESSIBILITY — Reduced motion
+   =================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Preloader: instant hide */
+  .preloader {
+    transition: none !important;
+  }
+
+  .preloader.is-loaded {
+    display: none;
+  }
+
+  /* Parallax: disabled */
+  .hero::before,
+  .hero::after {
+    transform: none !important;
+  }
+
+  /* Custom cursor: no transitions */
+  .cursor__ring {
+    transition: none !important;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — Tablet (768px+)
+   =================================================== */
+@media (min-width: 768px) {
+  :root {
+    --section-padding: 6rem 2rem;
+  }
+
+  /* Navbar */
+  .navbar__hamburger {
+    display: none;
+  }
+
+  .navbar__links {
+    display: flex;
+  }
+
+  /* Gallery */
+  .gallery__item {
+    flex: 0 0 40%;
+  }
+
+  .gallery__arrow {
+    display: flex;
+  }
+
+  /* Locations */
+  .locations {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Hotels */
+  .hotels {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — Desktop (1024px+)
+   =================================================== */
+@media (min-width: 1024px) {
+  :root {
+    --section-padding: 7rem 2rem;
+  }
+
+  /* Gallery */
+  .gallery__item {
+    flex: 0 0 30%;
+  }
+
+  .gallery__track {
+    padding: 1rem 3rem;
+  }
+
+  .gallery__arrow--prev {
+    left: 1.5rem;
+  }
+
+  .gallery__arrow--next {
+    right: 1.5rem;
+  }
+
+  /* Hotels */
+  .hotels {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
