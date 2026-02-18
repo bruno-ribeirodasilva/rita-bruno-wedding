@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Brasika Display';
+    src: url('BrasikaDisplay.eot');
+    src: local('Brasika Display'), local('BrasikaDisplay'),
+        url('BrasikaDisplay.eot?#iefix') format('embedded-opentype'),
+        url('BrasikaDisplay.woff2') format('woff2'),
+        url('BrasikaDisplay.woff') format('woff'),
+        url('BrasikaDisplay.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

@@ -10,6 +10,24 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00BF, U+0100-FFFF;
+}
+@font-face {
+  font-family: 'Brasika Display';
+  src: url('../fonts/font/BrasikaDisplay.woff2') format('woff2'),
+       url('../fonts/font/BrasikaDisplay.woff') format('woff'),
+       url('../fonts/font/BrasikaDisplay.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+00C0-00FF;
+}
+@font-face {
+  font-family: 'Amsterdam';
+  src: url('../fonts/amsterdam-four.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -382,6 +400,26 @@ a {
   width: 100%;
 }
 
+.navbar__cta {
+  background: rgba(194, 38, 86, 0.1);
+  color: var(--color-hotpink) !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  border: 1.5px solid rgba(194, 38, 86, 0.3);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(194, 38, 86, 0.1);
+}
+.navbar__cta::after {
+  display: none !important;
+}
+.navbar__cta:hover {
+  background: rgba(194, 38, 86, 0.15);
+  color: var(--color-hotpink) !important;
+  box-shadow: 0 0 20px rgba(194, 38, 86, 0.2);
+  border-color: rgba(194, 38, 86, 0.5);
+}
+
 /* Hamburger */
 .navbar__hamburger {
   display: flex;
@@ -481,12 +519,42 @@ a {
   transform: translateY(calc(var(--scroll-y, 0px) * -0.15));
 }
 
-/* Hero background layer — ready for future photo */
+/* Hero background photo */
 .hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
+}
+
+.hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 80%;
+  transform: scale(1.3) translateX(12%);
+}
+
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(246, 223, 226, 0.55) 0%,
+    rgba(246, 223, 226, 0.7) 40%,
+    rgba(246, 223, 226, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+[data-theme="dark"] .hero__bg::after {
+  background: linear-gradient(
+    180deg,
+    rgba(50, 86, 59, 0.6) 0%,
+    rgba(50, 86, 59, 0.75) 40%,
+    rgba(50, 86, 59, 0.9) 100%
+  );
 }
 
 @keyframes heroGlow {
@@ -536,14 +604,22 @@ a {
   text-transform: uppercase;
   color: var(--color-forest);
   text-wrap: balance;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.hero__venue {
+  font-family: 'Amsterdam', cursive;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--color-forest);
+  margin-bottom: 2rem;
+  opacity: 0.85;
 }
 
 .hero__countdown {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  gap: 1.2rem;
+  margin-bottom: 1.8rem;
 }
 
 .countdown__item {
@@ -555,7 +631,7 @@ a {
 .countdown__number {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
   color: var(--color-hotpink);
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -566,11 +642,11 @@ a {
 .countdown__label {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-forest);
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
 
 .hero__cta {
@@ -641,39 +717,81 @@ a {
    =================================================== */
 .marquee {
   overflow: hidden;
-  padding: 1.5rem 0;
+  padding: 0.4rem 0;
   background-color: var(--color-cream);
-  border-top: 1px solid rgba(50, 86, 59, 0.06);
-  border-bottom: 1px solid rgba(50, 86, 59, 0.06);
 }
 
 .marquee__track {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.35rem;
   width: max-content;
-  animation: marqueeScroll 30s linear infinite;
+  animation: marqueeScroll 80s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .marquee__img {
-  height: 80px;
-  width: auto;
-  opacity: 0.18;
+  height: 125px;
+  width: 188px;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0.85;
   flex-shrink: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.marquee__img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox[hidden] {
+  display: none;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+.lightbox.is-visible {
+  opacity: 1;
+}
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.lightbox__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
 }
 
 .marquee__dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--color-hotpink);
-  opacity: 0.3;
-  flex-shrink: 0;
+  display: none;
 }
 
 @keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 /* ===================================================
@@ -1453,6 +1571,219 @@ a {
   transform: scale(0.95);
 }
 
+/* Emoji reactions */
+.presentes__reactions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.reaction-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 0.9rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: visible;
+}
+
+.reaction-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.reaction-btn:active {
+  transform: scale(0.92);
+}
+
+.reaction-btn.is-reacted {
+  border-color: var(--color-hotpink);
+  background: rgba(246, 223, 226, 0.5);
+}
+
+.reaction-btn__emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reaction-btn.is-animating .reaction-btn__emoji {
+  transform: scale(1.5);
+}
+
+.reaction-btn__count {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-forest);
+  min-width: 1.2ch;
+  text-align: center;
+}
+
+/* Floating emoji animation */
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(1.4);
+  }
+}
+
+.reaction-btn__float {
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  pointer-events: none;
+  animation: floatUp 0.7s ease-out forwards;
+}
+
+/* ===================================================
+   A NOSSA HISTÓRIA — Timeline grid
+   =================================================== */
+.historia {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem 1rem;
+  margin: 2.5rem auto;
+  max-width: 900px;
+}
+
+.historia__item {
+  flex: 0 0 calc(25% - 0.75rem);
+  text-align: center;
+  padding-top: 4.5rem;
+  position: relative;
+}
+
+.historia__icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cream);
+  border-radius: 50%;
+  border: 2px solid var(--color-coral);
+  font-size: 1.3rem;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.historia__item:hover .historia__icon {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 4px 16px rgba(255, 108, 43, 0.2);
+}
+
+.historia__date {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-hotpink);
+  margin-bottom: 0.15rem;
+}
+
+.historia__content h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-forest);
+  margin-bottom: 0.1rem;
+}
+
+.historia__content p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--color-forest);
+  opacity: 0.65;
+}
+
+@media (max-width: 599px) {
+  .historia__item {
+    flex: 0 0 calc(50% - 0.5rem);
+  }
+}
+
+/* ===================================================
+   FLOATING NAME CLOUD — Background behind RSVP
+   =================================================== */
+.name-cloud-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#rsvp > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.name-cloud-bg__name {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.07;
+  animation: nameFloat var(--dur, 20s) ease-in-out infinite alternate;
+}
+
+@keyframes nameFloat {
+  from { transform: translate(0, 0) rotate(var(--r, 0deg)); }
+  to { transform: translate(var(--dx, 10px), var(--dy, -10px)) rotate(calc(var(--r, 0deg) + 3deg)); }
+}
+
+/* ===================================================
+   EASTER EGG
+   =================================================== */
+.easter-egg-msg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--color-hotpink);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 2rem 3rem;
+  border-radius: 24px;
+  border: 2px solid var(--color-hotpink);
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+}
+
+.easter-egg-msg.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 /* ===================================================
    10. FOOTER
    =================================================== */
@@ -1673,6 +2004,20 @@ a {
   color: #FFFFFF;
 }
 
+[data-theme="dark"] .reaction-btn {
+  background: rgba(42, 74, 51, 0.6);
+  border-color: rgba(246, 223, 226, 0.08);
+}
+
+[data-theme="dark"] .reaction-btn:hover {
+  background: rgba(42, 74, 51, 0.8);
+}
+
+[data-theme="dark"] .reaction-btn.is-reacted {
+  border-color: #c22656;
+  background: rgba(194, 38, 86, 0.15);
+}
+
 /* Radio accent — hard pink */
 [data-theme="dark"] .radio-label input[type="radio"] {
   accent-color: #c22656;
@@ -1783,6 +2128,39 @@ a {
 [data-theme="dark"] .gallery__arrow:hover {
   background: rgba(42, 74, 51, 0.7);
   border-color: rgba(246, 223, 226, 0.2);
+}
+
+/* História icons */
+[data-theme="dark"] .historia__icon {
+  background-color: #3d6847;
+  border-color: #c22656;
+}
+
+/* Floating name cloud */
+[data-theme="dark"] .name-cloud-bg__name {
+  opacity: 0.05;
+}
+
+/* Reaction buttons (dark) */
+[data-theme="dark"] .reaction-btn {
+  background: rgba(42, 74, 51, 0.6);
+  border-color: rgba(246, 223, 226, 0.08);
+}
+
+[data-theme="dark"] .reaction-btn:hover {
+  background: rgba(42, 74, 51, 0.8);
+}
+
+[data-theme="dark"] .reaction-btn.is-reacted {
+  border-color: #c22656;
+  background: rgba(194, 38, 86, 0.15);
+}
+
+/* Easter egg */
+[data-theme="dark"] .easter-egg-msg {
+  background: rgba(50, 86, 59, 0.92);
+  color: #f6dfe2;
+  border-color: #c22656;
 }
 
 /* ===================================================

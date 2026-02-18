@@ -56,7 +56,7 @@
     });
 
     // Scale ring on interactive elements
-    var interactiveSelectors = 'a, button, input, textarea, select, [role="button"], .gallery__item';
+    var interactiveSelectors = 'a, button, input, textarea, select, [role="button"], .marquee__img';
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest(interactiveSelectors)) {
         cursorEl.classList.add('is-hovering');
@@ -195,25 +195,42 @@
   });
 
   /* -------------------------------------------------
-     6. GALLERY CONTROLS — horizontal scroll
+     6. MARQUEE DUPLICATION + LIGHTBOX
      ------------------------------------------------- */
-  const galleryTrack = document.getElementById('gallery-track');
-  const prevBtn = document.getElementById('gallery-prev');
-  const nextBtn = document.getElementById('gallery-next');
+  // Clone marquee images for seamless infinite scroll
+  var marqueeTrack = document.querySelector('.marquee__track');
+  if (marqueeTrack) {
+    var imgs = marqueeTrack.querySelectorAll('.marquee__img');
+    imgs.forEach(function(img) {
+      marqueeTrack.appendChild(img.cloneNode(true));
+    });
+  }
 
-  if (galleryTrack && prevBtn && nextBtn) {
-    function getScrollAmount() {
-      var firstItem = galleryTrack.querySelector('.gallery__item');
-      if (!firstItem) return 300;
-      return firstItem.offsetWidth + 16; // width + gap
-    }
+  // Lightbox
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxClose = document.getElementById('lightbox-close');
 
-    prevBtn.addEventListener('click', function () {
-      galleryTrack.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll('.marquee__img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        lightboxImg.src = this.src;
+        lightbox.hidden = false;
+        requestAnimationFrame(function() { lightbox.classList.add('is-visible'); });
+      });
     });
 
-    nextBtn.addEventListener('click', function () {
-      galleryTrack.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    function closeLightbox() {
+      lightbox.classList.remove('is-visible');
+      setTimeout(function() { lightbox.hidden = true; lightboxImg.src = ''; }, 300);
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
     });
   }
 
@@ -281,11 +298,11 @@
     var attendance = rsvpForm.querySelector('[name="presenca"]:checked');
     if (!attendance) {
       isValid = false;
-      showFeedback('Por favor, indique se confirma a sua presença.', 'error');
+      showFeedback('Por favor, indica se confirmas a tua presença.', 'error');
     }
 
     if (!isValid && !feedback.textContent) {
-      showFeedback('Por favor, preencha todos os campos obrigatórios.', 'error');
+      showFeedback('Por favor, preenche todos os campos obrigatórios.', 'error');
     }
 
     return isValid;
@@ -320,7 +337,7 @@
         setLoading(false);
         if (data.result === 'success') {
           showFeedback(
-            'Obrigado! A sua confirmação foi enviada com sucesso.',
+            'Obrigado! A tua confirmação foi enviada com sucesso.',
             'success'
           );
           rsvpForm.reset();
@@ -350,7 +367,7 @@
           }
         } else {
           showFeedback(
-            'Ocorreu um erro. Por favor, tente novamente ou contacte-nos diretamente.',
+            'Ocorreu um erro. Por favor, tenta novamente ou contacta-nos diretamente.',
             'error'
           );
         }
@@ -358,7 +375,7 @@
       .catch(function () {
         setLoading(false);
         showFeedback(
-          'Ocorreu um erro de ligação. Por favor, tente novamente.',
+          'Ocorreu um erro de ligação. Por favor, tenta novamente.',
           'error'
         );
       });
@@ -411,6 +428,100 @@
         toast.hidden = true;
       }, 300);
     }, 2000);
+  }
+
+  /* -------------------------------------------------
+     8b. EMOJI REACTIONS — localStorage (frontend only for now)
+     ------------------------------------------------- */
+  var reactionsEl = document.getElementById('emoji-reactions');
+
+  if (reactionsEl) {
+    var reacted = JSON.parse(localStorage.getItem('ribru-reactions') || '{}');
+
+    // Mark already-reacted buttons
+    Object.keys(reacted).forEach(function (emoji) {
+      var btn = reactionsEl.querySelector('[data-emoji="' + emoji + '"]');
+      if (btn) btn.classList.add('is-reacted');
+    });
+
+    reactionsEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('.reaction-btn');
+      if (!btn) return;
+
+      var emoji = btn.getAttribute('data-emoji');
+      var countEl = btn.querySelector('.reaction-btn__count');
+      var emojiEl = btn.querySelector('.reaction-btn__emoji');
+      var count = parseInt(countEl.textContent) || 0;
+
+      if (reacted[emoji]) {
+        // Un-react
+        count = Math.max(0, count - 1);
+        delete reacted[emoji];
+        btn.classList.remove('is-reacted');
+      } else {
+        // React
+        count += 1;
+        reacted[emoji] = true;
+        btn.classList.add('is-reacted');
+
+        // Animate: pop the emoji
+        btn.classList.add('is-animating');
+        setTimeout(function () { btn.classList.remove('is-animating'); }, 300);
+
+        // Floating emoji
+        var floater = document.createElement('span');
+        floater.className = 'reaction-btn__float';
+        floater.textContent = emojiEl.textContent;
+        btn.appendChild(floater);
+        setTimeout(function () { floater.remove(); }, 700);
+      }
+
+      countEl.textContent = count;
+      localStorage.setItem('ribru-reactions', JSON.stringify(reacted));
+    });
+  }
+
+  /* -------------------------------------------------
+     8c. EASTER EGG — Triple-click the logo
+     ------------------------------------------------- */
+  var logoEl = document.querySelector('.navbar__monogram');
+  var logoClickCount = 0;
+  var logoClickTimer;
+
+  if (logoEl) {
+    logoEl.addEventListener('click', function (e) {
+      logoClickCount++;
+      clearTimeout(logoClickTimer);
+
+      if (logoClickCount >= 3) {
+        logoClickCount = 0;
+        e.preventDefault();
+        triggerEasterEgg();
+      }
+
+      logoClickTimer = setTimeout(function () {
+        logoClickCount = 0;
+      }, 800);
+    });
+  }
+
+  function triggerEasterEgg() {
+    var msg = document.getElementById('easter-egg-msg');
+    if (msg) {
+      msg.classList.add('is-visible');
+      setTimeout(function () { msg.classList.remove('is-visible'); }, 3000);
+    }
+
+    if (typeof confetti === 'function' && !prefersReducedMotion) {
+      var colors = ['#c22656', '#ff6c2b', '#f6dfe2', '#849b6f', '#32563b'];
+      confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 }, colors: colors, shapes: ['circle'], scalar: 1.5 });
+      setTimeout(function () {
+        confetti({ particleCount: 150, spread: 140, origin: { y: 0.4 }, colors: colors, shapes: ['circle'], scalar: 1.2 });
+      }, 300);
+      setTimeout(function () {
+        confetti({ particleCount: 100, spread: 160, origin: { y: 0.6 }, colors: colors, shapes: ['circle'], scalar: 1 });
+      }, 600);
+    }
   }
 
   /* -------------------------------------------------

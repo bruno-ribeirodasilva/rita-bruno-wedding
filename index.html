@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rita & Bruno — 4 de Julho de 2026</title>
-  <meta name="description" content="Rita e Bruno casam-se a 4 de Julho de 2026 em Marco de Canaveses. Confirme a sua presença.">
+  <meta name="description" content="Rita e Bruno casam-se a 4 de Julho de 2026 em Marco de Canaveses. Confirma a tua presença.">
   <meta property="og:title" content="Rita & Bruno — 4 de Julho de 2026">
   <meta property="og:description" content="Rita e Bruno casam-se a 4 de Julho de 2026 em Marco de Canaveses.">
   <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=19">
 </head>
 <body>
 
@@ -49,25 +49,28 @@
         <span></span>
       </button>
       <ul class="navbar__links" id="nav-links">
-        <li><a href="#informacoes">O Dia</a></li>
         <li><a href="#como-chegar">Como Chegar</a></li>
         <li><a href="#onde-ficar">Onde Ficar</a></li>
-        <li><a href="#faq">Perguntas Frequentes</a></li>
-        <li><a href="#rsvp">RSVP</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#presentes">Presentes</a></li>
+        <li><a href="#rsvp" class="navbar__cta">Confirmar Presença</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
+    <div class="hero__bg">
+      <img src="assets/fotos/fotos/1R1A9561.JPG" alt="" class="hero__bg-img">
+    </div>
     <div class="hero__content">
       <h1 class="hero__names">
         <span class="hero__name">Rita</span>
         <span class="hero__ampersand">e</span>
         <span class="hero__name">Bruno</span>
       </h1>
-      <p class="hero__date">4 de Julho de 2026</p>
+      <p class="hero__date">4 de Julho de 2026 · 14h00</p>
+      <p class="hero__venue">Igreja de São Martinho de Soalhães</p>
       <div class="hero__countdown" id="countdown">
         <div class="countdown__item">
           <span class="countdown__number" id="countdown-days">---</span>
@@ -86,7 +89,6 @@
           <span class="countdown__label">segundos</span>
         </div>
       </div>
-      <a href="#rsvp" class="hero__cta">Confirmar Presença</a>
     </div>
     <div class="hero__scroll-arrow" aria-hidden="true">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -99,150 +101,137 @@
     </div>
   </section>
 
-  <!-- ===== MARQUEE STRIP ===== -->
-  <div class="marquee" aria-hidden="true">
+  <!-- ===== PHOTO STRIP ===== -->
+  <div class="marquee" id="galeria">
     <div class="marquee__track">
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
-      <img src="img/logo-couple.png" alt="" class="marquee__img">
-      <span class="marquee__dot"></span>
+      <img src="assets/fotos/fotos/1R1A9549.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/1R1A9577.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/1R1A9712.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/1R1A9734.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/161AA128-FBFC-447B-ACB7-6F51C8DED668.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/1654DE1E-4418-4A70-BF5A-C2FE648AEAAA.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/2b2e0dcb-2002-45b5-8eff-5c27640e5122 (Editado).jpg" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/3997660E-950F-4AB0-9707-9CE3F10667CC.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/4376181A-743F-44A1-86B1-381E01A95DBF.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/4FC0E333-E215-446C-A4E5-5EAFC44474FE.jpg" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/510E770B-4753-42AF-AA2E-CB56C87DE6F7.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/56C59B21-14CB-483C-B1C4-267F3C10179C.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/64c7e816-899c-4c61-9270-4f14c2d8c799.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/6765C980-E710-44A4-804A-909B3398AC7A.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/788E3AE2-0B3E-45F2-8B59-F5BA7EFCA795.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/84C0EEE4-F9B9-49A1-882B-E844A3276AB2.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/86869252-5398-498A-82EC-83FD1E307A43.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/8BD444AC-4FC2-43A7-AC7F-514E04B4BFAD.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/9d59c304-04c9-419b-ae6b-7135860c9036.jpg" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/AE89CE76-D784-460B-BA6D-2DBCEC99B498.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/AirBrush_20191216204506.jpg" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/BAFF3938-F7F1-4514-98D6-3AEBA3DB8861.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/BBF7E4E0-CE2E-4D47-AA44-0F63447A6A6F.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/DAA9566D-7272-42E8-B3D5-CCDCEEA7A569.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/DSC_3697.jpg" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/EC8591D7-0278-4177-8648-E6B0EEBC9CEA.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/F09A5450-E828-4C0D-994E-47E247A0AA1B.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/FB_IMG_1604179919302.jpg" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_0902.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_1720.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_3448.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_3523.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_3801.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_4007.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_4435.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_4436.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_4438.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_4500.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_5751.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_5753.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_5754.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_6847.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_7235.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_8519.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_8614.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_8631.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_8943.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/IMG_9001.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/c7b7b781-9b9d-4c69-8a51-6663bf6e48e4.jpg" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/d4d239ee-e2dd-447c-8963-52c8e6566349.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
+      <img src="assets/fotos/fotos/e2a49f12-352c-4f9a-97c6-d815a39217f6.JPG" alt="Rita & Bruno" class="marquee__img" loading="lazy" decoding="async">
     </div>
   </div>
 
-  <!-- ===== INFORMAÇÕES ===== -->
-  <section class="section section--cream" id="informacoes">
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__close" id="lightbox-close" aria-label="Fechar">&times;</button>
+    <img class="lightbox__img" id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- ===== A NOSSA HISTÓRIA ===== -->
+  <section class="section section--blush" id="nossa-historia">
     <div class="container">
-      <h2 class="section__title fade-in">O Dia</h2>
-      <div class="timeline fade-in">
-        <div class="timeline__item">
-          <div class="timeline__icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 3v2M14 23v2M7 7l6 6M15 13l6-6M4 14h3M21 14h3M7 25h14M9 25V14l5-7 5 7v11"/>
-              <line x1="14" y1="7" x2="14" y2="5"/>
-              <path d="M12 25v-4h4v4"/>
-            </svg>
-          </div>
-          <div class="timeline__time">14h00</div>
-          <div class="timeline__content">
-            <h3>Cerimónia Religiosa</h3>
-            <p>Igreja de São Martinho de Soalhães</p>
+      <h2 class="section__title fade-in">A Nossa História</h2>
+      <div class="historia fade-in">
+        <div class="historia__item">
+          <div class="historia__icon">☕</div>
+          <div class="historia__date">Setembro 2018</div>
+          <div class="historia__content">
+            <h3>Primeiro Encontro</h3>
+            <p>Conhecemo-nos numa noite que mudou tudo.</p>
           </div>
         </div>
-        <div class="timeline__item">
-          <div class="timeline__icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 22l2-9h10l2 9"/>
-              <path d="M10 13c0-3 1-6 4-9 3 3 4 6 4 9"/>
-              <line x1="5" y1="22" x2="23" y2="22"/>
-              <path d="M9 22v3M19 22v3"/>
-            </svg>
-          </div>
-          <div class="timeline__time">~16h00</div>
-          <div class="timeline__content">
-            <h3>Copo d'Água</h3>
-            <p>Casa de Quintã</p>
+        <div class="historia__item">
+          <div class="historia__icon">🍷</div>
+          <div class="historia__date">Outubro 2018</div>
+          <div class="historia__content">
+            <h3>O Primeiro Date</h3>
+            <p>Um jantar que deveria ter sido rápido... durou 5 horas.</p>
           </div>
         </div>
-        <div class="timeline__item">
-          <div class="timeline__icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="10" cy="18" r="4"/>
-              <circle cx="18" cy="14" r="4"/>
-              <path d="M14 18v-8"/>
-              <path d="M14 10l4-2"/>
-              <path d="M6 18v4M22 14v4"/>
-            </svg>
-          </div>
-          <div class="timeline__time">~23h00</div>
-          <div class="timeline__content">
-            <h3>Festa</h3>
-            <p>Vamos celebrar!</p>
+        <div class="historia__item">
+          <div class="historia__icon">💫</div>
+          <div class="historia__date">Dezembro 2018</div>
+          <div class="historia__content">
+            <h3>O Primeiro Beijo</h3>
+            <p>Debaixo das luzes de Natal, tudo fez sentido.</p>
           </div>
         </div>
-        <div class="timeline__item">
-          <div class="timeline__icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="14" cy="14" r="10"/>
-              <path d="M14 8v6l4 2"/>
-            </svg>
-          </div>
-          <div class="timeline__time">4h00</div>
-          <div class="timeline__content">
-            <h3>Fim da Festa</h3>
-            <p>Boa noite!</p>
+        <div class="historia__item">
+          <div class="historia__icon">💕</div>
+          <div class="historia__date">Fevereiro 2019</div>
+          <div class="historia__content">
+            <h3>Namoro Oficial</h3>
+            <p>O que todos já sabiam tornou-se finalmente oficial.</p>
           </div>
         </div>
-      </div>
-      <div class="dress-code fade-in">
-        <p class="dress-code__label">Dress Code</p>
-        <p class="dress-code__text">Vestido formal · fraque ou fato escuro</p>
+        <div class="historia__item">
+          <div class="historia__icon">✈️</div>
+          <div class="historia__date">Agosto 2020</div>
+          <div class="historia__content">
+            <h3>Primeira Viagem</h3>
+            <p>Uma semana em Itália só para nós dois.</p>
+          </div>
+        </div>
+        <div class="historia__item">
+          <div class="historia__icon">🏠</div>
+          <div class="historia__date">Junho 2022</div>
+          <div class="historia__content">
+            <h3>A Nossa Casa</h3>
+            <p>Quatro paredes que se tornaram o nosso mundo.</p>
+          </div>
+        </div>
+        <div class="historia__item">
+          <div class="historia__icon">💍</div>
+          <div class="historia__date">Dezembro 2025</div>
+          <div class="historia__content">
+            <h3>O Pedido</h3>
+            <p>Ela disse sim. E o resto é história.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Wave: informações → gallery -->
+    <!-- Wave: história → como chegar -->
     <div class="section-divider" aria-hidden="true">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C240,55 480,5 720,30 C960,55 1200,10 1440,25 L1440,60 L0,60Z" fill="#f6dfe2"/></svg>
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C240,55 480,5 720,30 C960,55 1200,10 1440,25 L1440,60 L0,60Z" fill="#FFF8F2"/></svg>
     </div>
   </section>
-
-  <!-- ===== GALERIA ===== -->
-  <div class="gallery-strip" id="galeria">
-    <div class="gallery fade-in">
-      <button class="gallery__arrow gallery__arrow--prev" id="gallery-prev" aria-label="Anterior">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-      <div class="gallery__track" id="gallery-track">
-        <div class="gallery__item">
-          <img class="gallery__img" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
-        </div>
-        <div class="gallery__item">
-          <img class="gallery__img" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
-        </div>
-        <div class="gallery__item">
-          <img class="gallery__img" src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
-        </div>
-        <div class="gallery__item">
-          <img class="gallery__img" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
-        </div>
-        <div class="gallery__item">
-          <img class="gallery__img" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
-        </div>
-        <div class="gallery__item">
-          <img class="gallery__img" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&h=533&fit=crop&q=80" alt="Foto do casal" loading="lazy" decoding="async">
-        </div>
-      </div>
-      <button class="gallery__arrow gallery__arrow--next" id="gallery-next" aria-label="Seguinte">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-    </div>
-    <!-- Wave: gallery → como chegar -->
-    <div class="section-divider section-divider--gallery" aria-hidden="true">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,35 C320,5 640,55 960,25 C1120,12 1300,40 1440,20 L1440,60 L0,60Z" fill="#FFF8F2"/></svg>
-    </div>
-  </div>
 
   <!-- ===== COMO CHEGAR ===== -->
   <section class="section section--cream" id="como-chegar">
@@ -272,15 +261,15 @@
           <p class="location-card__address">Rua de Quintã 830, Soalhães, Marco de Canaveses</p>
           <div class="location-card__map">
             <iframe
-              src="https://maps.google.com/maps?q=41.159360,-8.123467&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=41.161028,-8.124056&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="Mapa da Casa de Quintã">
             </iframe>
           </div>
-          <a href="https://maps.google.com/?q=41.159360,-8.123467"
+          <a href="https://www.google.com/maps/dir//41.161028,-8.124056"
              class="location-card__link" target="_blank" rel="noopener noreferrer">
-            Abrir no Google Maps →
+            Obter Direções →
           </a>
         </div>
       </div>
@@ -327,43 +316,43 @@
         <details class="faq__item">
           <summary class="faq__question">Até quando devo confirmar presença?</summary>
           <div class="faq__answer">
-            <p>Pedimos, por favor, que confirme a sua presença até <strong>1 de maio de 2026</strong>. Pode fazê-lo através do formulário RSVP nesta página.</p>
+            <p>Pedimos, por favor, que confirmes a tua presença até <strong>1 de maio de 2026</strong>. Podes fazê-lo através do formulário RSVP nesta página ou através dos nossos contactos telefónicos.</p>
           </div>
         </details>
         <details class="faq__item">
           <summary class="faq__question">Qual é o dress code?</summary>
           <div class="faq__answer">
-            <p>Traje formal — vestido comprido ou cocktail para as senhoras, fato escuro ou fraque para os senhores. O mais importante é que se sinta confortável e elegante.</p>
+            <p>Traje formal — vestido formal para as senhoras, fato escuro ou fraque para os senhores. O mais importante é que te sintas confortável e elegante.</p>
           </div>
         </details>
         <details class="faq__item">
           <summary class="faq__question">Posso levar acompanhante?</summary>
           <div class="faq__answer">
-            <p>Os convites são pessoais e destinam-se apenas às pessoas indicadas. Se tiver dúvidas, não hesite em contactar-nos diretamente.</p>
+            <p>Os convites são individuais e destinam-se apenas às pessoas indicadas. Se tiveres dúvidas, não hesites em contactar-nos diretamente.</p>
           </div>
         </details>
         <details class="faq__item">
           <summary class="faq__question">O casamento é ao ar livre?</summary>
           <div class="faq__answer">
-            <p>A cerimónia religiosa será na Igreja de São Martinho de Soalhães (interior). A receção e festa serão na Casa de Quintã, com espaços interiores e exteriores. Temos plano alternativo em caso de mau tempo.</p>
+            <p>A cerimónia religiosa será na Igreja de São Martinho de Soalhães (interior). A receção e festa serão na Casa de Quintã, com espaços interiores e exteriores.</p>
           </div>
         </details>
         <details class="faq__item">
           <summary class="faq__question">Há estacionamento no local?</summary>
           <div class="faq__answer">
-            <p>Sim. Mais perto da data, indicaremos as coordenadas exatas dos locais de estacionamento disponíveis junto à igreja e à Casa de Quintã.</p>
+            <p>Sim. Haverá estacionamento na Igreja e na Quinta para todos os convidados.</p>
           </div>
         </details>
         <details class="faq__item">
-          <summary class="faq__question">Acomodam restrições alimentares?</summary>
+          <summary class="faq__question">Existem alternativas em caso de restrições alimentares?</summary>
           <div class="faq__answer">
-            <p>Claro! Pedimos que indique quaisquer restrições ou alergias alimentares no formulário de confirmação de presença para que possamos garantir opções adequadas para todos.</p>
+            <p>Claro! Pedimos que indiques quaisquer restrições ou alergias alimentares no formulário de confirmação de presença para que possamos garantir opções adequadas para todos.</p>
           </div>
         </details>
         <details class="faq__item">
           <summary class="faq__question">Posso levar crianças?</summary>
           <div class="faq__answer">
-            <p>As crianças são bem-vindas! Por favor, indique o número de crianças no formulário RSVP para que possamos preparar tudo.</p>
+            <p>As crianças são bem-vindas, pelo que deixamos ao critério dos pais a decisão de as trazer. Apenas pedimos que indiquem no formulário RSVP para que possamos preparar tudo.</p>
           </div>
         </details>
       </div>
@@ -377,8 +366,8 @@
   <!-- ===== RSVP ===== -->
   <section class="section section--blush" id="rsvp">
     <div class="container container--narrow">
-      <h2 class="section__title fade-in">Confirme a sua Presença</h2>
-      <p class="section__subtitle fade-in">Por favor, confirme até 1 de maio de 2026</p>
+      <h2 class="section__title fade-in">Confirma a tua Presença</h2>
+      <p class="section__subtitle fade-in">Por favor, confirma até 1 de maio de 2026</p>
       <form class="rsvp-form fade-in" id="rsvp-form" novalidate>
         <div class="form-group">
           <label for="rsvp-name">Nome completo *</label>
@@ -407,17 +396,17 @@
           <div class="radio-group">
             <label class="radio-label">
               <input type="radio" name="presenca" value="Sim" required>
-              <span>Sim, estarei presente</span>
+              <span>Sim, vou estar presente</span>
             </label>
             <label class="radio-label">
               <input type="radio" name="presenca" value="Não">
-              <span>Não poderei estar presente</span>
+              <span>Não vou poder estar presente</span>
             </label>
           </div>
         </div>
         <div class="form-group">
           <label for="rsvp-message">Mensagem aos noivos</label>
-          <textarea id="rsvp-message" name="mensagem" rows="3" placeholder="Deixe-nos uma mensagem (opcional)"></textarea>
+          <textarea id="rsvp-message" name="mensagem" rows="3" placeholder="Deixa-nos uma mensagem (opcional)"></textarea>
         </div>
         <button type="submit" class="rsvp-form__submit" id="rsvp-submit">
           <span class="rsvp-form__submit-text">Enviar Confirmação</span>
@@ -435,16 +424,38 @@
         <p class="presentes__heading">Presentes</p>
         <div class="presentes__line"></div>
         <p class="presentes__message">
-          O nosso maior presente será a vossa presença.
+          O nosso maior presente será a tua presença.
         </p>
         <p class="presentes__sub">
-          Mas se desejarem contribuir para a nossa nova vida a dois
+          Mas se quiseres contribuir para a nossa nova vida a dois
           e para a nossa lua de mel, ficamos muito gratos.
         </p>
         <div class="presentes__iban-box">
           <p class="presentes__iban-label">Transferência Bancária</p>
           <p class="presentes__iban" id="iban-number">PT50 XXXX XXXX XXXX XXXX XXXX X</p>
           <button class="presentes__copy-btn" id="copy-iban" type="button">Copiar IBAN</button>
+        </div>
+        <div class="presentes__reactions" id="emoji-reactions">
+          <button class="reaction-btn" data-emoji="heart" type="button">
+            <span class="reaction-btn__emoji">❤️</span>
+            <span class="reaction-btn__count" data-count="heart">47</span>
+          </button>
+          <button class="reaction-btn" data-emoji="champagne" type="button">
+            <span class="reaction-btn__emoji">🥂</span>
+            <span class="reaction-btn__count" data-count="champagne">32</span>
+          </button>
+          <button class="reaction-btn" data-emoji="party" type="button">
+            <span class="reaction-btn__emoji">🎉</span>
+            <span class="reaction-btn__count" data-count="party">28</span>
+          </button>
+          <button class="reaction-btn" data-emoji="sparkles" type="button">
+            <span class="reaction-btn__emoji">✨</span>
+            <span class="reaction-btn__count" data-count="sparkles">19</span>
+          </button>
+          <button class="reaction-btn" data-emoji="ring" type="button">
+            <span class="reaction-btn__emoji">💍</span>
+            <span class="reaction-btn__count" data-count="ring">24</span>
+          </button>
         </div>
       </div>
     </div>
@@ -487,6 +498,9 @@
 
   <!-- Toast notification for IBAN copy -->
   <div class="toast" id="toast" hidden>Copiado!</div>
+
+  <!-- Easter egg message -->
+  <div class="easter-egg-msg" id="easter-egg-msg">Viva os noivos!</div>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1/dist/confetti.browser.min.js"></script>
