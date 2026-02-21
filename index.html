@@ -169,124 +169,101 @@
   <section class="section section--blush" id="nossa-historia">
     <div class="container">
       <h2 class="section__title fade-in">A Nossa História</h2>
-      <div class="timeline" id="timeline">
+      <div class="tl fade-in">
 
-        <!-- SVG lines drawn behind everything -->
-        <svg class="timeline__svg" id="timeline-svg" aria-hidden="true"></svg>
-
-        <!-- Birth: Rita (left branch) -->
-        <div class="timeline__event timeline__event--birth-left" data-branch="rita">
-          <div class="timeline__dot timeline__dot--rita"></div>
-          <div class="timeline__card timeline__card--left">
-            <span class="timeline__icon">👶</span>
-            <span class="timeline__date">25 de Abril de 1994</span>
-            <h3 class="timeline__title">Rita nasce</h3>
-            <p class="timeline__desc">O mundo ficou mais bonito</p>
+        <!-- Births: two branches merging -->
+        <div class="tl__fork">
+          <div class="tl__branch tl__branch--rita">
+            <span class="tl__emoji">👶</span>
+            <span class="tl__year">1994</span>
+            <span class="tl__label">Rita nasce</span>
+          </div>
+          <div class="tl__branch tl__branch--bruno">
+            <span class="tl__emoji">👶</span>
+            <span class="tl__year">1995</span>
+            <span class="tl__label">Bruno nasce</span>
           </div>
         </div>
 
-        <!-- Birth: Bruno (right branch) -->
-        <div class="timeline__event timeline__event--birth-right" data-branch="bruno">
-          <div class="timeline__dot timeline__dot--bruno"></div>
-          <div class="timeline__card timeline__card--right">
-            <span class="timeline__icon">👶</span>
-            <span class="timeline__date">2 de Maio de 1995</span>
-            <h3 class="timeline__title">Bruno nasce</h3>
-            <p class="timeline__desc">E mais divertido</p>
-          </div>
+        <!-- Merge lines visual -->
+        <div class="tl__merge-lines" aria-hidden="true">
+          <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+            <path d="M30,0 C30,30 100,30 100,40" fill="none" stroke="var(--color-hotpink)" stroke-width="2"/>
+            <path d="M170,0 C170,30 100,30 100,40" fill="none" stroke="var(--color-forest)" stroke-width="2"/>
+          </svg>
         </div>
 
-        <!-- Merge point: Flower Power -->
-        <div class="timeline__event timeline__event--merge" data-branch="merge">
-          <div class="timeline__dot timeline__dot--merge"></div>
-          <div class="timeline__card timeline__card--center">
-            <span class="timeline__icon">🌸</span>
-            <span class="timeline__date">22 de Setembro de 2017</span>
-            <h3 class="timeline__title">Flower Power</h3>
-            <p class="timeline__desc">Um encontro inesperado de dois estranhos na noite que mudou tudo</p>
+        <!-- Main vertical timeline -->
+        <div class="tl__line">
+          <div class="tl__item tl__item--highlight">
+            <span class="tl__emoji">🌸</span>
+            <div class="tl__info">
+              <span class="tl__date">22 Set 2017</span>
+              <span class="tl__name">Flower Power</span>
+              <span class="tl__sub">Um encontro inesperado que mudou tudo</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Main timeline events -->
-        <div class="timeline__event" data-branch="main">
-          <div class="timeline__dot"></div>
-          <div class="timeline__card timeline__card--right">
-            <span class="timeline__icon">💕</span>
-            <span class="timeline__date">10 de Dezembro de 2017</span>
-            <h3 class="timeline__title">Começámos a namorar</h3>
-            <p class="timeline__desc">O início de tudo</p>
+          <div class="tl__item">
+            <span class="tl__emoji">💕</span>
+            <div class="tl__info">
+              <span class="tl__date">10 Dez 2017</span>
+              <span class="tl__name">Começámos a namorar</span>
+            </div>
           </div>
-        </div>
-
-        <div class="timeline__event" data-branch="main">
-          <div class="timeline__dot"></div>
-          <div class="timeline__card timeline__card--left">
-            <span class="timeline__icon">✈️</span>
-            <span class="timeline__date">18 de Fevereiro de 2018</span>
-            <h3 class="timeline__title">Primeira viagem</h3>
-            <p class="timeline__desc">Itália: Florença e Bolonha — a primeira de muitas</p>
+          <div class="tl__item">
+            <span class="tl__emoji">✈️</span>
+            <div class="tl__info">
+              <span class="tl__date">18 Fev 2018</span>
+              <span class="tl__name">Primeira viagem</span>
+              <span class="tl__sub">Florença e Bolonha — a primeira de muitas</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Pet branch: Physis -->
-        <div class="timeline__event timeline__event--pet-left" data-branch="pet">
-          <div class="timeline__dot timeline__dot--pet"></div>
-          <div class="timeline__card timeline__card--right">
-            <span class="timeline__icon">🐾</span>
-            <span class="timeline__date">22 de Junho de 2019</span>
-            <h3 class="timeline__title">Encontrámos a Physis!</h3>
-            <p class="timeline__desc">A nossa primeira filha de quatro patas</p>
+          <div class="tl__item tl__item--pet">
+            <span class="tl__emoji">🐾</span>
+            <div class="tl__info">
+              <span class="tl__date">22 Jun 2019</span>
+              <span class="tl__name">Encontrámos a Physis!</span>
+            </div>
           </div>
-        </div>
-
-        <div class="timeline__event" data-branch="main">
-          <div class="timeline__dot"></div>
-          <div class="timeline__card timeline__card--left">
-            <span class="timeline__icon">💃</span>
-            <span class="timeline__date">1 de Abril de 2022</span>
-            <h3 class="timeline__title">Rio de Janeiro</h3>
-            <p class="timeline__desc">Vivemos juntos do outro lado do mundo</p>
+          <div class="tl__item">
+            <span class="tl__emoji">💃</span>
+            <div class="tl__info">
+              <span class="tl__date">1 Abr 2022</span>
+              <span class="tl__name">Rio de Janeiro</span>
+              <span class="tl__sub">Vivemos juntos do outro lado do mundo</span>
+            </div>
           </div>
-        </div>
-
-        <div class="timeline__event" data-branch="main">
-          <div class="timeline__dot"></div>
-          <div class="timeline__card timeline__card--right">
-            <span class="timeline__icon">🏠</span>
-            <span class="timeline__date">9 de Março de 2023</span>
-            <h3 class="timeline__title">A nossa casa</h3>
-            <p class="timeline__desc">Primeiro jantar na primeira casa</p>
+          <div class="tl__item">
+            <span class="tl__emoji">🏠</span>
+            <div class="tl__info">
+              <span class="tl__date">9 Mar 2023</span>
+              <span class="tl__name">A nossa casa</span>
+              <span class="tl__sub">Primeiro jantar na primeira casa</span>
+            </div>
           </div>
-        </div>
-
-        <div class="timeline__event" data-branch="main">
-          <div class="timeline__dot"></div>
-          <div class="timeline__card timeline__card--left">
-            <span class="timeline__icon">🍊</span>
-            <span class="timeline__date">1 de Janeiro de 2024</span>
-            <h3 class="timeline__title">Valência</h3>
-            <p class="timeline__desc">Uma nova aventura juntos em Espanha</p>
+          <div class="tl__item">
+            <span class="tl__emoji">🍊</span>
+            <div class="tl__info">
+              <span class="tl__date">1 Jan 2024</span>
+              <span class="tl__name">Valência</span>
+              <span class="tl__sub">Uma nova aventura juntos em Espanha</span>
+            </div>
           </div>
-        </div>
-
-        <div class="timeline__event" data-branch="main">
-          <div class="timeline__dot"></div>
-          <div class="timeline__card timeline__card--center">
-            <span class="timeline__icon">💍</span>
-            <span class="timeline__date">15 de Março de 2025</span>
-            <h3 class="timeline__title">O Pedido</h3>
-            <p class="timeline__desc">Ela disse sim!</p>
+          <div class="tl__item tl__item--highlight">
+            <span class="tl__emoji">💍</span>
+            <div class="tl__info">
+              <span class="tl__date">15 Mar 2025</span>
+              <span class="tl__name">O Pedido</span>
+              <span class="tl__sub">Ela disse sim!</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Pet branch: Luna -->
-        <div class="timeline__event timeline__event--pet-right" data-branch="pet">
-          <div class="timeline__dot timeline__dot--pet"></div>
-          <div class="timeline__card timeline__card--left">
-            <span class="timeline__icon">🐾</span>
-            <span class="timeline__date">27 de Outubro de 2026</span>
-            <h3 class="timeline__title">A Luna escolheu-nos!</h3>
-            <p class="timeline__desc">A família cresceu</p>
+          <div class="tl__item tl__item--pet">
+            <span class="tl__emoji">🐾</span>
+            <div class="tl__info">
+              <span class="tl__date">27 Out 2026</span>
+              <span class="tl__name">A Luna escolheu-nos!</span>
+              <span class="tl__sub">A família cresceu</span>
+            </div>
           </div>
         </div>
 
@@ -420,7 +397,6 @@
             <p>A quinta dispõe de um número limitado de quartos que reservamos para familiares próximos e padrinhos. No entanto, deixamos algumas sugestões de alojamento próximos da quinta que poderão reservar. Adicionalmente, disponibilizaremos de um serviço de táxi para fazer o transporte para os mesmos (caso sejam nas redondezas), no final da festa.</p>
           </div>
         </details>
-        <details class="faq__item">
         <details class="faq__item">
           <summary class="faq__question">Existem alternativas em caso de restrições alimentares?</summary>
           <div class="faq__answer">
