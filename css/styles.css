@@ -609,7 +609,7 @@ a {
 
 .hero__venue {
   font-family: 'Amsterdam', cursive;
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
   color: var(--color-forest);
   margin-bottom: 2rem;
   opacity: 0.85;
@@ -692,6 +692,17 @@ a {
 @keyframes ctaGradient {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+.hero__cta--mobile {
+  margin-top: 1.5rem;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .hero__cta--mobile {
+    display: none;
+  }
 }
 
 /* Scroll arrow */

@@ -238,7 +238,7 @@
      7. RSVP FORM — validation + fetch POST
      ------------------------------------------------- */
   // IMPORTANT: Replace this URL with your Google Apps Script deployment URL
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjmLwIwqqh8LIplV-1FM3dkft1Ag3Z5yrhsIT1_-rc9OZLzR-cVVAcv4id_Msp9j9YIw/exec';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfqqL6jD7-J_WEZ8aXiwHKxy88m_GM-rwQ8WCre41ZyVCnboVTW156Eyajihrwar1QcQ/exec';
 
   var rsvpForm = document.getElementById('rsvp-form');
   var submitBtn = document.getElementById('rsvp-submit');
@@ -431,7 +431,7 @@
   }
 
   /* -------------------------------------------------
-     8b. EMOJI REACTIONS — localStorage (frontend only for now)
+     8b. EMOJI REACTIONS — Google Apps Script backend
      ------------------------------------------------- */
   var reactionsEl = document.getElementById('emoji-reactions');
 
@@ -444,22 +444,38 @@
       if (btn) btn.classList.add('is-reacted');
     });
 
+    // Fetch real counts from backend on page load
+    fetch(APPS_SCRIPT_URL + '?type=reactions')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.result === 'success' && data.counts) {
+          Object.keys(data.counts).forEach(function (emoji) {
+            var countEl = reactionsEl.querySelector('[data-count="' + emoji + '"]');
+            if (countEl) countEl.textContent = data.counts[emoji];
+          });
+        }
+      })
+      .catch(function () { /* silent fail — counts stay at 0 */ });
+
     reactionsEl.addEventListener('click', function (e) {
       var btn = e.target.closest('.reaction-btn');
-      if (!btn) return;
+      if (!btn || btn.disabled) return;
 
       var emoji = btn.getAttribute('data-emoji');
       var countEl = btn.querySelector('.reaction-btn__count');
       var emojiEl = btn.querySelector('.reaction-btn__emoji');
       var count = parseInt(countEl.textContent) || 0;
+      var action;
 
       if (reacted[emoji]) {
         // Un-react
+        action = 'remove';
         count = Math.max(0, count - 1);
         delete reacted[emoji];
         btn.classList.remove('is-reacted');
       } else {
         // React
+        action = 'add';
         count += 1;
         reacted[emoji] = true;
         btn.classList.add('is-reacted');
@@ -476,8 +492,27 @@
         setTimeout(function () { floater.remove(); }, 700);
       }
 
+      // Optimistic UI update
       countEl.textContent = count;
       localStorage.setItem('ribru-reactions', JSON.stringify(reacted));
+
+      // Sync with backend
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ type: 'reaction', emoji: emoji, action: action })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          // Update all counts from server response
+          if (data.result === 'success' && data.counts) {
+            Object.keys(data.counts).forEach(function (em) {
+              var el = reactionsEl.querySelector('[data-count="' + em + '"]');
+              if (el) el.textContent = data.counts[em];
+            });
+          }
+        })
+        .catch(function () { /* keep optimistic count on failure */ });
     });
   }
 
