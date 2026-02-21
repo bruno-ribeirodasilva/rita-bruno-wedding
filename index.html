@@ -169,63 +169,127 @@
   <section class="section section--blush" id="nossa-historia">
     <div class="container">
       <h2 class="section__title fade-in">A Nossa História</h2>
-      <div class="historia fade-in">
-        <div class="historia__item">
-          <div class="historia__icon">☕</div>
-          <div class="historia__date">Setembro 2018</div>
-          <div class="historia__content">
-            <h3>Primeiro Encontro</h3>
-            <p>Conhecemo-nos numa noite que mudou tudo.</p>
+      <div class="timeline" id="timeline">
+
+        <!-- SVG lines drawn behind everything -->
+        <svg class="timeline__svg" id="timeline-svg" aria-hidden="true"></svg>
+
+        <!-- Birth: Rita (left branch) -->
+        <div class="timeline__event timeline__event--birth-left" data-branch="rita">
+          <div class="timeline__dot timeline__dot--rita"></div>
+          <div class="timeline__card timeline__card--left">
+            <span class="timeline__icon">👶</span>
+            <span class="timeline__date">25 de Abril de 1994</span>
+            <h3 class="timeline__title">Rita nasce</h3>
+            <p class="timeline__desc">O mundo ficou mais bonito</p>
           </div>
         </div>
-        <div class="historia__item">
-          <div class="historia__icon">🍷</div>
-          <div class="historia__date">Outubro 2018</div>
-          <div class="historia__content">
-            <h3>O Primeiro Date</h3>
-            <p>Um jantar que deveria ter sido rápido... durou 5 horas.</p>
+
+        <!-- Birth: Bruno (right branch) -->
+        <div class="timeline__event timeline__event--birth-right" data-branch="bruno">
+          <div class="timeline__dot timeline__dot--bruno"></div>
+          <div class="timeline__card timeline__card--right">
+            <span class="timeline__icon">👶</span>
+            <span class="timeline__date">2 de Maio de 1995</span>
+            <h3 class="timeline__title">Bruno nasce</h3>
+            <p class="timeline__desc">E mais divertido</p>
           </div>
         </div>
-        <div class="historia__item">
-          <div class="historia__icon">💫</div>
-          <div class="historia__date">Dezembro 2018</div>
-          <div class="historia__content">
-            <h3>O Primeiro Beijo</h3>
-            <p>Debaixo das luzes de Natal, tudo fez sentido.</p>
+
+        <!-- Merge point: Flower Power -->
+        <div class="timeline__event timeline__event--merge" data-branch="merge">
+          <div class="timeline__dot timeline__dot--merge"></div>
+          <div class="timeline__card timeline__card--center">
+            <span class="timeline__icon">🌸</span>
+            <span class="timeline__date">22 de Setembro de 2017</span>
+            <h3 class="timeline__title">Flower Power</h3>
+            <p class="timeline__desc">Um encontro inesperado de dois estranhos na noite que mudou tudo</p>
           </div>
         </div>
-        <div class="historia__item">
-          <div class="historia__icon">💕</div>
-          <div class="historia__date">Fevereiro 2019</div>
-          <div class="historia__content">
-            <h3>Namoro Oficial</h3>
-            <p>O que todos já sabiam tornou-se finalmente oficial.</p>
+
+        <!-- Main timeline events -->
+        <div class="timeline__event" data-branch="main">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card timeline__card--right">
+            <span class="timeline__icon">💕</span>
+            <span class="timeline__date">10 de Dezembro de 2017</span>
+            <h3 class="timeline__title">Começámos a namorar</h3>
+            <p class="timeline__desc">O início de tudo</p>
           </div>
         </div>
-        <div class="historia__item">
-          <div class="historia__icon">✈️</div>
-          <div class="historia__date">Agosto 2020</div>
-          <div class="historia__content">
-            <h3>Primeira Viagem</h3>
-            <p>Uma semana em Itália só para nós dois.</p>
+
+        <div class="timeline__event" data-branch="main">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card timeline__card--left">
+            <span class="timeline__icon">✈️</span>
+            <span class="timeline__date">18 de Fevereiro de 2018</span>
+            <h3 class="timeline__title">Primeira viagem</h3>
+            <p class="timeline__desc">Itália: Florença e Bolonha — a primeira de muitas</p>
           </div>
         </div>
-        <div class="historia__item">
-          <div class="historia__icon">🏠</div>
-          <div class="historia__date">Junho 2022</div>
-          <div class="historia__content">
-            <h3>A Nossa Casa</h3>
-            <p>Quatro paredes que se tornaram o nosso mundo.</p>
+
+        <!-- Pet branch: Physis -->
+        <div class="timeline__event timeline__event--pet-left" data-branch="pet">
+          <div class="timeline__dot timeline__dot--pet"></div>
+          <div class="timeline__card timeline__card--right">
+            <span class="timeline__icon">🐾</span>
+            <span class="timeline__date">22 de Junho de 2019</span>
+            <h3 class="timeline__title">Encontrámos a Physis!</h3>
+            <p class="timeline__desc">A nossa primeira filha de quatro patas</p>
           </div>
         </div>
-        <div class="historia__item">
-          <div class="historia__icon">💍</div>
-          <div class="historia__date">Dezembro 2025</div>
-          <div class="historia__content">
-            <h3>O Pedido</h3>
-            <p>Ela disse sim. E o resto é história.</p>
+
+        <div class="timeline__event" data-branch="main">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card timeline__card--left">
+            <span class="timeline__icon">💃</span>
+            <span class="timeline__date">1 de Abril de 2022</span>
+            <h3 class="timeline__title">Rio de Janeiro</h3>
+            <p class="timeline__desc">Vivemos juntos do outro lado do mundo</p>
           </div>
         </div>
+
+        <div class="timeline__event" data-branch="main">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card timeline__card--right">
+            <span class="timeline__icon">🏠</span>
+            <span class="timeline__date">9 de Março de 2023</span>
+            <h3 class="timeline__title">A nossa casa</h3>
+            <p class="timeline__desc">Primeiro jantar na primeira casa</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-branch="main">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card timeline__card--left">
+            <span class="timeline__icon">🍊</span>
+            <span class="timeline__date">1 de Janeiro de 2024</span>
+            <h3 class="timeline__title">Valência</h3>
+            <p class="timeline__desc">Uma nova aventura juntos em Espanha</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-branch="main">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card timeline__card--center">
+            <span class="timeline__icon">💍</span>
+            <span class="timeline__date">15 de Março de 2025</span>
+            <h3 class="timeline__title">O Pedido</h3>
+            <p class="timeline__desc">Ela disse sim!</p>
+          </div>
+        </div>
+
+        <!-- Pet branch: Luna -->
+        <div class="timeline__event timeline__event--pet-right" data-branch="pet">
+          <div class="timeline__dot timeline__dot--pet"></div>
+          <div class="timeline__card timeline__card--left">
+            <span class="timeline__icon">🐾</span>
+            <span class="timeline__date">27 de Outubro de 2026</span>
+            <h3 class="timeline__title">A Luna escolheu-nos!</h3>
+            <p class="timeline__desc">A família cresceu</p>
+          </div>
+        </div>
+
       </div>
     </div>
     <!-- Wave: história → como chegar -->
@@ -270,7 +334,7 @@
           </div>
           <a href="https://www.google.com/maps/dir//41.161028,-8.124056"
              class="location-card__link" target="_blank" rel="noopener noreferrer">
-            Obter Direções →
+            Abrir no Google Maps →
           </a>
         </div>
       </div>
@@ -329,7 +393,7 @@
         <details class="faq__item">
           <summary class="faq__question">Qual é o dress code?</summary>
           <div class="faq__answer">
-            <p>Traje formal — vestido formal para as senhoras, fato escuro ou fraque para os senhores. O mais importante é que te sintas confortável e elegante.</p>
+            <p>Traje formal - vestido formal para as senhoras, fato escuro ou fraque para os senhores. O mais importante é que te sintas confortável e elegante.</p>
           </div>
         </details>
         <details class="faq__item">
@@ -359,7 +423,7 @@
         <details class="faq__item">
           <summary class="faq__question">Posso levar crianças?</summary>
           <div class="faq__answer">
-            <p>As crianças são bem-vindas, pelo que deixamos ao critério dos pais a decisão de as trazer. Apenas pedimos que indiquem no formulário RSVP para que possamos preparar tudo.</p>
+            <p>O dia será longo e animado, pelo que cada família poderá decidir o que faz mais sentido - a vossa presença é o que mais nos importa. Apenas pedimos que indiquem no formulário RSVP para que possamos preparar tudo.</p>
           </div>
         </details>
       </div>
