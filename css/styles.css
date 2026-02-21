@@ -843,108 +843,7 @@ a {
   opacity: 0.8;
 }
 
-/* ===================================================
-   4. INFORMAÇÕES — Timeline (horizontal)
-   =================================================== */
-.timeline {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin: 2.5rem auto;
-  max-width: 900px;
-}
-
-/* Horizontal connecting line */
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: calc(1.75rem - 1px);
-  left: 12%;
-  right: 12%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-coral), var(--color-hotpink));
-  opacity: 0.25;
-}
-
-.timeline__item {
-  position: relative;
-  text-align: center;
-  padding-top: 4.5rem;
-}
-
-.timeline__item:last-child {
-  padding-bottom: 0;
-}
-
-/* Icon circle sitting ON the line */
-.timeline__icon {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3.5rem;
-  height: 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-cream);
-  color: var(--color-coral);
-  border-radius: 50%;
-  border: 2px solid var(--color-coral);
-  z-index: 2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline__item:hover .timeline__icon {
-  transform: translateX(-50%) scale(1.1);
-  box-shadow: 0 4px 16px rgba(255, 108, 43, 0.2);
-}
-
-.timeline__icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.timeline__time {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--color-hotpink);
-  margin-bottom: 0.15rem;
-}
-
-.timeline__content h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--color-forest);
-  margin-bottom: 0.1rem;
-}
-
-.timeline__content p {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.85rem;
-  color: var(--color-forest);
-  opacity: 0.65;
-}
-
-/* Stack on small screens */
-@media (max-width: 599px) {
-  .timeline {
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem 1rem;
-  }
-
-  .timeline::before {
-    display: none;
-  }
-
-  .timeline__item::before {
-    display: none;
-  }
-}
+/* (Old horizontal timeline removed — replaced by branching timeline below) */
 
 /* Dress code */
 .dress-code {
@@ -2258,12 +2157,7 @@ a {
   border-color: rgba(246, 223, 226, 0.06);
 }
 
-/* Timeline icons */
-[data-theme="dark"] .timeline__icon {
-  background-color: #3d6847;
-  border-color: #c22656;
-  color: #c22656;
-}
+/* Timeline — no special dark icon override needed */
 
 /* SVG divider fills */
 [data-theme="dark"] .section-divider path[fill="#FFF8F2"] {
