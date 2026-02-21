@@ -517,145 +517,18 @@
   }
 
   /* -------------------------------------------------
-     8c. TIMELINE — SVG branching lines + scroll reveal
+     8c. TIMELINE — Scroll reveal for items
      ------------------------------------------------- */
-  var timelineEl = document.getElementById('timeline');
-  var timelineSvg = document.getElementById('timeline-svg');
-
-  if (timelineEl && timelineSvg) {
-    function buildTimelineLines() {
-      // Clear previous SVG content
-      timelineSvg.innerHTML = '';
-
-      var events = timelineEl.querySelectorAll('.timeline__event');
-      var timelineRect = timelineEl.getBoundingClientRect();
-
-      // Get center X of each dot relative to timeline container
-      function getDotCenter(evt) {
-        var dot = evt.querySelector('.timeline__dot');
-        if (!dot) return { x: 0, y: 0 };
-        var r = dot.getBoundingClientRect();
-        return {
-          x: r.left + r.width / 2 - timelineRect.left,
-          y: r.top + r.height / 2 - timelineRect.top
-        };
-      }
-
-      var points = [];
-      events.forEach(function (evt, i) {
-        points.push({ el: evt, center: getDotCenter(evt), branch: evt.getAttribute('data-branch') });
-      });
-
-      if (points.length < 3) return;
-
-      var ritaPt = points[0]; // Rita birth
-      var brunoPt = points[1]; // Bruno birth
-      var mergePt = points[2]; // Flower Power
-
-      // Line: Rita → merge
-      var ritaPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      var rMidY = (ritaPt.center.y + mergePt.center.y) / 2;
-      ritaPath.setAttribute('d',
-        'M' + ritaPt.center.x + ',' + ritaPt.center.y +
-        ' C' + ritaPt.center.x + ',' + rMidY +
-        ' ' + mergePt.center.x + ',' + rMidY +
-        ' ' + mergePt.center.x + ',' + mergePt.center.y
-      );
-      ritaPath.classList.add('line-rita');
-      timelineSvg.appendChild(ritaPath);
-
-      // Line: Bruno → merge
-      var brunoPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      var bMidY = (brunoPt.center.y + mergePt.center.y) / 2;
-      brunoPath.setAttribute('d',
-        'M' + brunoPt.center.x + ',' + brunoPt.center.y +
-        ' C' + brunoPt.center.x + ',' + bMidY +
-        ' ' + mergePt.center.x + ',' + bMidY +
-        ' ' + mergePt.center.x + ',' + mergePt.center.y
-      );
-      brunoPath.classList.add('line-bruno');
-      timelineSvg.appendChild(brunoPath);
-
-      // Main line: merge → through all main/pet events
-      var mainPoints = points.filter(function (p, i) { return i >= 2; });
-      if (mainPoints.length > 1) {
-        var d = 'M' + mainPoints[0].center.x + ',' + mainPoints[0].center.y;
-        for (var i = 1; i < mainPoints.length; i++) {
-          var prev = mainPoints[i - 1].center;
-          var curr = mainPoints[i].center;
-          var midY = (prev.y + curr.y) / 2;
-          d += ' C' + prev.x + ',' + midY + ' ' + curr.x + ',' + midY + ' ' + curr.x + ',' + curr.y;
-        }
-        var mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        mainPath.setAttribute('d', d);
-        mainPath.classList.add('line-main');
-        timelineSvg.appendChild(mainPath);
-      }
-
-      // Pet branch lines (from the side)
-      points.forEach(function (p) {
-        if (p.branch !== 'pet') return;
-        var petPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        var isPetLeft = p.el.classList.contains('timeline__event--pet-left');
-        var sideX = isPetLeft ? -20 : timelineRect.width + 20;
-        var midX = (sideX + p.center.x) / 2;
-        petPath.setAttribute('d',
-          'M' + sideX + ',' + p.center.y +
-          ' C' + midX + ',' + p.center.y +
-          ' ' + midX + ',' + p.center.y +
-          ' ' + p.center.x + ',' + p.center.y
-        );
-        petPath.classList.add('line-pet');
-        timelineSvg.appendChild(petPath);
-      });
-
-      // Animate line drawing
-      timelineSvg.querySelectorAll('path').forEach(function (path) {
-        var len = path.getTotalLength();
-        path.style.strokeDasharray = len;
-        path.style.strokeDashoffset = len;
-      });
-    }
-
-    // Build lines after layout settles
-    setTimeout(buildTimelineLines, 300);
-    window.addEventListener('resize', buildTimelineLines);
-
-    // Scroll-triggered reveal for events + line drawing
-    var timelineObserver = new IntersectionObserver(function (entries) {
+  var tlItems = document.querySelectorAll('.tl__item');
+  if (tlItems.length) {
+    var tlObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
         }
       });
-    }, { threshold: 0.2 });
-
-    timelineEl.querySelectorAll('.timeline__event').forEach(function (evt) {
-      timelineObserver.observe(evt);
-    });
-
-    // Draw lines progressively on scroll
-    function animateTimelineLines() {
-      var svgPaths = timelineSvg.querySelectorAll('path');
-      if (!svgPaths.length) return;
-
-      var timelineRect = timelineEl.getBoundingClientRect();
-      var viewportH = window.innerHeight;
-      var timelineTop = timelineRect.top;
-      var timelineH = timelineRect.height;
-
-      // How far the viewport has scrolled through the timeline (0 to 1)
-      var progress = Math.min(1, Math.max(0, (viewportH - timelineTop) / (timelineH + viewportH * 0.5)));
-
-      svgPaths.forEach(function (path) {
-        var len = path.getTotalLength();
-        path.style.strokeDashoffset = len * (1 - progress);
-      });
-
-      requestAnimationFrame(animateTimelineLines);
-    }
-
-    requestAnimationFrame(animateTimelineLines);
+    }, { threshold: 0.3 });
+    tlItems.forEach(function (item) { tlObserver.observe(item); });
   }
 
   /* -------------------------------------------------

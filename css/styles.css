@@ -1567,220 +1567,184 @@ a {
    A NOSSA HISTÓRIA — Timeline grid
    =================================================== */
 /* ===================================================
-   TIMELINE — Branching "Nossa História"
+   TIMELINE — "Nossa História"
    =================================================== */
-.timeline {
-  position: relative;
+.tl {
+  max-width: 480px;
+  margin: 2rem auto 1rem;
+}
+
+/* --- Fork: two birth branches side by side --- */
+.tl__fork {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0;
+}
+
+.tl__branch {
   display: flex;
   flex-direction: column;
-  max-width: 700px;
-  margin: 3rem auto 2rem;
-  padding: 0 1rem;
+  align-items: center;
+  gap: 0.15rem;
 }
 
-.timeline__svg {
-  position: absolute;
-  top: 0;
-  left: 0;
+.tl__branch .tl__emoji {
+  font-size: 1.6rem;
+}
+
+.tl__branch .tl__year {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-hotpink);
+}
+
+.tl__branch--bruno .tl__year {
+  color: var(--color-forest);
+}
+
+.tl__branch .tl__label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--color-forest);
+}
+
+/* --- Merge SVG lines --- */
+.tl__merge-lines {
+  width: 100%;
+  height: 40px;
+  margin-bottom: -2px;
+}
+
+.tl__merge-lines svg {
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: visible;
 }
 
-.timeline__svg path {
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-}
-
-.timeline__svg .line-rita { stroke: var(--color-hotpink); }
-.timeline__svg .line-bruno { stroke: var(--color-forest); }
-.timeline__svg .line-main { stroke: var(--color-coral); }
-.timeline__svg .line-pet { stroke: var(--color-sage); stroke-dasharray: 6 4; }
-
-/* --- Events --- */
-.timeline__event {
+/* --- Main vertical line container --- */
+.tl__line {
   position: relative;
-  z-index: 1;
-  padding: 1.2rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1.5rem 1fr;
-  align-items: center;
-  gap: 0 1.5rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  padding-left: 2.5rem;
 }
 
-.timeline__event.is-visible {
+/* Vertical line */
+.tl__line::before {
+  content: '';
+  position: absolute;
+  left: 1.1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-coral), var(--color-hotpink));
+  border-radius: 1px;
+}
+
+/* --- Timeline items --- */
+.tl__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+}
+
+/* Dot on the line */
+.tl__item::before {
+  content: '';
+  position: absolute;
+  left: -1.65rem;
+  top: 0.85rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-coral);
+  border: 2px solid var(--color-cream);
+  box-shadow: 0 0 0 2px var(--color-coral);
+  z-index: 1;
+}
+
+.tl__item--highlight::before {
+  width: 12px;
+  height: 12px;
+  left: -1.72rem;
+  top: 0.8rem;
+  background: var(--color-hotpink);
+  box-shadow: 0 0 0 2px var(--color-hotpink), 0 0 10px rgba(194, 38, 86, 0.3);
+}
+
+.tl__item--pet::before {
+  background: var(--color-sage);
+  box-shadow: 0 0 0 2px var(--color-sage);
+}
+
+/* Emoji */
+.tl__item .tl__emoji {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.05rem;
+}
+
+/* Info block */
+.tl__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tl__date {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.72rem;
+  color: var(--color-hotpink);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tl__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-forest);
+  line-height: 1.3;
+}
+
+.tl__sub {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--color-forest);
+  opacity: 0.6;
+  line-height: 1.35;
+}
+
+/* Pet items: subtle sage accent */
+.tl__item--pet .tl__date {
+  color: var(--color-sage);
+}
+
+/* Scroll-reveal animation */
+.tl__item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tl__item.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* --- Dot --- */
-.timeline__dot {
-  grid-column: 2;
-  grid-row: 1;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  background: var(--color-coral);
-  border: 2.5px solid var(--color-cream);
-  box-shadow: 0 0 0 2.5px var(--color-coral);
-  z-index: 3;
-  justify-self: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline__event:hover .timeline__dot {
-  transform: scale(1.3);
-  box-shadow: 0 0 0 2.5px var(--color-coral), 0 0 12px rgba(255, 108, 43, 0.3);
-}
-
-.timeline__dot--rita {
-  background: var(--color-hotpink);
-  box-shadow: 0 0 0 2.5px var(--color-hotpink);
-}
-
-.timeline__dot--bruno {
-  background: var(--color-forest);
-  box-shadow: 0 0 0 2.5px var(--color-forest);
-}
-
-.timeline__dot--merge {
-  width: 1.3rem;
-  height: 1.3rem;
-  background: linear-gradient(135deg, var(--color-hotpink), var(--color-forest));
-  box-shadow: 0 0 0 3px var(--color-coral), 0 0 16px rgba(255, 108, 43, 0.25);
-}
-
-.timeline__dot--pet {
-  background: var(--color-sage);
-  box-shadow: 0 0 0 2.5px var(--color-sage);
-}
-
-/* --- Cards --- */
-.timeline__card {
-  grid-row: 1;
-  padding: 0.8rem 1.2rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 108, 43, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 280px;
-}
-
-.timeline__event:hover .timeline__card {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(50, 86, 59, 0.08);
-}
-
-.timeline__card--left {
-  grid-column: 1;
-  text-align: right;
-  justify-self: end;
-}
-
-.timeline__card--right {
-  grid-column: 3;
-  text-align: left;
-  justify-self: start;
-}
-
-.timeline__card--center {
-  grid-column: 3;
-  text-align: left;
-  justify-self: start;
-}
-
-/* --- Card content --- */
-.timeline__icon {
-  display: inline-block;
-  font-size: 1.3rem;
-  margin-bottom: 0.2rem;
-}
-
-.timeline__date {
-  display: block;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.75rem;
-  color: var(--color-hotpink);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 0.1rem;
-}
-
-.timeline__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--color-forest);
-  margin-bottom: 0.1rem;
-}
-
-.timeline__desc {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.82rem;
-  color: var(--color-forest);
-  opacity: 0.65;
-  line-height: 1.4;
-}
-
-/* --- Merge event special styling --- */
-.timeline__event--merge .timeline__card {
-  background: linear-gradient(135deg, rgba(194, 38, 86, 0.06), rgba(50, 86, 59, 0.06));
-  border-color: var(--color-coral);
-}
-
-/* --- Pet events --- */
-.timeline__event--pet-left .timeline__card,
-.timeline__event--pet-right .timeline__card {
-  border-color: var(--color-sage);
-  background: rgba(132, 155, 111, 0.08);
-}
-
-/* ===================================================
-   TIMELINE — Mobile
-   =================================================== */
+/* --- Mobile tweaks --- */
 @media (max-width: 599px) {
-  .timeline__event {
-    grid-template-columns: 1.5rem 1fr;
-    gap: 0 1rem;
+  .tl {
+    max-width: 100%;
+    padding: 0 0.5rem;
   }
 
-  .timeline__dot {
-    grid-column: 1;
-    justify-self: center;
-  }
-
-  .timeline__card--left,
-  .timeline__card--right,
-  .timeline__card--center {
-    grid-column: 2;
-    text-align: left;
-    justify-self: start;
-    max-width: none;
-  }
-
-  .timeline__event--birth-left .timeline__card,
-  .timeline__event--birth-right .timeline__card {
-    grid-column: 2;
-    text-align: left;
-    justify-self: start;
-  }
-
-  .timeline__event--birth-left .timeline__dot,
-  .timeline__event--birth-right .timeline__dot {
-    grid-column: 1;
-  }
-
-  .timeline__event {
-    padding: 0.8rem 0;
+  .tl__line {
+    padding-left: 2.2rem;
   }
 }
 
@@ -2184,15 +2148,9 @@ a {
   border-color: rgba(246, 223, 226, 0.2);
 }
 
-/* Timeline cards */
-[data-theme="dark"] .timeline__card {
-  background: rgba(61, 104, 71, 0.4);
-  border-color: rgba(194, 38, 86, 0.25);
-}
-[data-theme="dark"] .timeline__event--pet-left .timeline__card,
-[data-theme="dark"] .timeline__event--pet-right .timeline__card {
-  background: rgba(132, 155, 111, 0.15);
-  border-color: rgba(132, 155, 111, 0.3);
+/* Timeline dark overrides */
+[data-theme="dark"] .tl__line::before {
+  background: linear-gradient(180deg, #c22656, #c22656);
 }
 
 /* Floating name cloud */
