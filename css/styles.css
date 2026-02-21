@@ -1672,6 +1672,8 @@ a {
    =================================================== */
 .timeline {
   position: relative;
+  display: flex;
+  flex-direction: column;
   max-width: 700px;
   margin: 3rem auto 2rem;
   padding: 0 1rem;
@@ -1703,9 +1705,9 @@ a {
 .timeline__event {
   position: relative;
   z-index: 1;
-  padding: 1.5rem 0;
+  padding: 1.2rem 0;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1.5rem 1fr;
   align-items: center;
   gap: 0 1.5rem;
   opacity: 0;
@@ -1718,18 +1720,10 @@ a {
   transform: translateY(0);
 }
 
-/* Birth events: offset left and right */
-.timeline__event--birth-left {
-  grid-template-columns: 1fr auto 1fr;
-}
-
-.timeline__event--birth-right {
-  grid-template-columns: 1fr auto 1fr;
-}
-
 /* --- Dot --- */
 .timeline__dot {
   grid-column: 2;
+  grid-row: 1;
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
@@ -1737,6 +1731,7 @@ a {
   border: 2.5px solid var(--color-cream);
   box-shadow: 0 0 0 2.5px var(--color-coral);
   z-index: 3;
+  justify-self: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1769,12 +1764,14 @@ a {
 
 /* --- Cards --- */
 .timeline__card {
+  grid-row: 1;
   padding: 0.8rem 1.2rem;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 108, 43, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 280px;
 }
 
 .timeline__event:hover .timeline__card {
@@ -1784,60 +1781,52 @@ a {
 
 .timeline__card--left {
   grid-column: 1;
-  grid-row: 1;
   text-align: right;
+  justify-self: end;
 }
 
 .timeline__card--right {
   grid-column: 3;
-  grid-row: 1;
   text-align: left;
+  justify-self: start;
 }
 
 .timeline__card--center {
   grid-column: 3;
-  grid-row: 1;
   text-align: left;
+  justify-self: start;
 }
-
-/* Birth left: card on left */
-.timeline__event--birth-left .timeline__card { grid-column: 1; text-align: right; }
-.timeline__event--birth-left .timeline__dot { grid-column: 2; }
-
-/* Birth right: card on right */
-.timeline__event--birth-right .timeline__card { grid-column: 3; text-align: left; }
-.timeline__event--birth-right .timeline__dot { grid-column: 2; }
 
 /* --- Card content --- */
 .timeline__icon {
-  display: block;
-  font-size: 1.5rem;
-  margin-bottom: 0.25rem;
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
 }
 
 .timeline__date {
   display: block;
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--color-hotpink);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 
 .timeline__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--color-forest);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 
 .timeline__desc {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--color-forest);
   opacity: 0.65;
   line-height: 1.4;
@@ -1861,26 +1850,29 @@ a {
    =================================================== */
 @media (max-width: 599px) {
   .timeline__event {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1.5rem 1fr;
     gap: 0 1rem;
   }
 
   .timeline__dot {
     grid-column: 1;
+    justify-self: center;
   }
 
   .timeline__card--left,
   .timeline__card--right,
   .timeline__card--center {
     grid-column: 2;
-    grid-row: 1;
     text-align: left;
+    justify-self: start;
+    max-width: none;
   }
 
   .timeline__event--birth-left .timeline__card,
   .timeline__event--birth-right .timeline__card {
     grid-column: 2;
     text-align: left;
+    justify-self: start;
   }
 
   .timeline__event--birth-left .timeline__dot,
@@ -1889,7 +1881,7 @@ a {
   }
 
   .timeline__event {
-    padding: 1rem 0;
+    padding: 0.8rem 0;
   }
 }
 
