@@ -163,49 +163,59 @@
   <section class="section section--blush" id="nossa-historia">
     <div class="container">
       <h2 class="section__title fade-in">A Nossa História</h2>
+      <div class="historia-intro fade-in">
+        <p><strong>22 de setembro de 2017.</strong><br>
+        Uma festa de Medicina. Dois estranhos cruzam olhares e, mais tarde nessa noite… trocam números de telefone.</p>
+        <p>Ela, Medicina, com os pés bem assentes na terra.<br>
+        Ele, Engenharia, o sonhador de serviço.</p>
+        <p>Dias depois, ele foi deixá-la a casa. Um encontro tranquilo, até demais. Ela ia sair do carro… mas voltou atrás. E, nesse pequeno desvio inesperado, começou verdadeiramente a nossa história.</p>
+        <p>Uma história que já atravessou 3 países, incontáveis viagens, muitos desafios e dois animais adotados pelo caminho.<br>
+        Oito anos depois, continuamos a escolher-nos todos os dias.<br>
+        E agora começamos o capítulo mais bonito de todos — aquele que vamos construir lado a lado, para sempre.</p>
+      </div>
       <div class="tl fade-in">
         <div class="tl__row">
-          <span class="tl__date">22 de Setembro de 2017</span>
+          <span class="tl__date">22 Set 2017</span>
           <span class="tl__dot"></span>
           <span class="tl__text">🌸 <strong>Flower Power</strong> — encontro inesperado de dois estranhos na noite</span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">10 de Dezembro de 2017</span>
+          <span class="tl__date">10 Dez 2017</span>
           <span class="tl__dot"></span>
           <span class="tl__text">💕 <strong>Começámos a namorar</strong></span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">18 de Fevereiro de 2018</span>
+          <span class="tl__date">18 Fev 2018</span>
           <span class="tl__dot"></span>
           <span class="tl__text">✈️ <strong>Primeira viagem</strong> — Florença e Bolonha, a primeira de muitas</span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">22 de Junho de 2019</span>
+          <span class="tl__date">22 Jun 2019</span>
           <span class="tl__dot tl__dot--pet"></span>
           <span class="tl__text">🐾 <strong>Encontrámos a Physis!</strong></span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">1 de Abril de 2022</span>
+          <span class="tl__date">1 Abr 2022</span>
           <span class="tl__dot"></span>
           <span class="tl__text">💃 <strong>Rio de Janeiro</strong> — vivemos juntos do outro lado do mundo</span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">9 de Março de 2023</span>
+          <span class="tl__date">9 Mar 2023</span>
           <span class="tl__dot"></span>
           <span class="tl__text">🏠 <strong>A nossa casa</strong> — primeiro jantar na primeira casa</span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">1 de Janeiro de 2024</span>
+          <span class="tl__date">1 Jan 2024</span>
           <span class="tl__dot"></span>
           <span class="tl__text">🍊 <strong>Valência</strong> — uma nova aventura juntos</span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">15 de Março de 2025</span>
+          <span class="tl__date">15 Mar 2025</span>
           <span class="tl__dot tl__dot--highlight"></span>
           <span class="tl__text">💍 <strong>O Pedido</strong> — ela disse sim!</span>
         </div>
         <div class="tl__row">
-          <span class="tl__date">27 de Outubro de 2026</span>
+          <span class="tl__date">27 Out 2026</span>
           <span class="tl__dot tl__dot--pet"></span>
           <span class="tl__text">🐾 <strong>A Luna escolheu-nos!</strong> — a família cresceu</span>
         </div>
@@ -367,16 +377,16 @@
       <form class="rsvp-form fade-in" id="rsvp-form" novalidate>
         <div class="form-group">
           <label for="rsvp-name">Nome completo *</label>
-          <input type="text" id="rsvp-name" name="nome" required autocomplete="name">
+          <input type="text" id="rsvp-name" name="nome" required autocomplete="name" placeholder="Michael Scott">
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="rsvp-email">Email</label>
-            <input type="email" id="rsvp-email" name="email" autocomplete="email" placeholder="(opcional)">
+            <input type="email" id="rsvp-email" name="email" autocomplete="email" placeholder="michael@theoffice.com">
           </div>
           <div class="form-group">
             <label for="rsvp-phone">Telemóvel</label>
-            <input type="tel" id="rsvp-phone" name="telemovel" autocomplete="tel" placeholder="(opcional)">
+            <input type="tel" id="rsvp-phone" name="telemovel" autocomplete="tel">
           </div>
         </div>
         <div class="form-group">
@@ -388,7 +398,7 @@
           <textarea id="rsvp-dietary" name="restricoes" rows="2" placeholder="Ex: vegetariano, sem glúten..."></textarea>
         </div>
         <div class="form-group">
-          <label>Confirma presença? * <span class="form-hint">(um formulário por pessoa)</span></label>
+          <label>Confirma presença? *</label>
           <div class="radio-group">
             <label class="radio-label">
               <input type="radio" name="presenca" value="Sim" required>
@@ -408,6 +418,7 @@
           <span class="rsvp-form__submit-text">Enviar Confirmação</span>
           <span class="rsvp-form__submit-loading" hidden>A enviar...</span>
         </button>
+        <p class="form-hint form-hint--below">Um formulário por pessoa</p>
         <div class="rsvp-form__feedback" id="rsvp-feedback" hidden></div>
       </form>
     </div>

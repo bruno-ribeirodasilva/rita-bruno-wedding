@@ -429,14 +429,6 @@
   var reactionsEl = document.getElementById('emoji-reactions');
 
   if (reactionsEl) {
-    var reacted = JSON.parse(localStorage.getItem('ribru-reactions') || '{}');
-
-    // Mark already-reacted buttons
-    Object.keys(reacted).forEach(function (emoji) {
-      var btn = reactionsEl.querySelector('[data-emoji="' + emoji + '"]');
-      if (btn) btn.classList.add('is-reacted');
-    });
-
     // Fetch real counts from backend on page load
     fetch(APPS_SCRIPT_URL + '?type=reactions')
       .then(function (r) { return r.json(); })
@@ -452,60 +444,34 @@
 
     reactionsEl.addEventListener('click', function (e) {
       var btn = e.target.closest('.reaction-btn');
-      if (!btn || btn.disabled) return;
+      if (!btn) return;
 
       var emoji = btn.getAttribute('data-emoji');
       var countEl = btn.querySelector('.reaction-btn__count');
       var emojiEl = btn.querySelector('.reaction-btn__emoji');
       var count = parseInt(countEl.textContent) || 0;
-      var action;
 
-      if (reacted[emoji]) {
-        // Un-react
-        action = 'remove';
-        count = Math.max(0, count - 1);
-        delete reacted[emoji];
-        btn.classList.remove('is-reacted');
-      } else {
-        // React
-        action = 'add';
-        count += 1;
-        reacted[emoji] = true;
-        btn.classList.add('is-reacted');
-
-        // Animate: pop the emoji
-        btn.classList.add('is-animating');
-        setTimeout(function () { btn.classList.remove('is-animating'); }, 300);
-
-        // Floating emoji
-        var floater = document.createElement('span');
-        floater.className = 'reaction-btn__float';
-        floater.textContent = emojiEl.textContent;
-        btn.appendChild(floater);
-        setTimeout(function () { floater.remove(); }, 700);
-      }
-
-      // Optimistic UI update
+      // Always add — spam away!
+      count += 1;
       countEl.textContent = count;
-      localStorage.setItem('ribru-reactions', JSON.stringify(reacted));
 
-      // Sync with backend
+      // Animate: pop the emoji
+      btn.classList.add('is-animating');
+      setTimeout(function () { btn.classList.remove('is-animating'); }, 300);
+
+      // Floating emoji
+      var floater = document.createElement('span');
+      floater.className = 'reaction-btn__float';
+      floater.textContent = emojiEl.textContent;
+      btn.appendChild(floater);
+      setTimeout(function () { floater.remove(); }, 700);
+
+      // Sync with backend (don't overwrite optimistic count on response)
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ type: 'reaction', emoji: emoji, action: action })
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          // Update all counts from server response
-          if (data.result === 'success' && data.counts) {
-            Object.keys(data.counts).forEach(function (em) {
-              var el = reactionsEl.querySelector('[data-count="' + em + '"]');
-              if (el) el.textContent = data.counts[em];
-            });
-          }
-        })
-        .catch(function () { /* keep optimistic count on failure */ });
+        body: JSON.stringify({ type: 'reaction', emoji: emoji, action: 'add' })
+      }).catch(function () { /* silent fail */ });
     });
   }
 

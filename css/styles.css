@@ -1249,6 +1249,13 @@ a {
   font-size: 0.85rem;
   opacity: 0.6;
 }
+.form-hint--below {
+  text-align: center;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  opacity: 0.45;
+  font-style: italic;
+}
 
 .form-group input[type="text"],
 .form-group input[type="email"],
@@ -1576,6 +1583,21 @@ a {
 /* ===================================================
    TIMELINE — "Nossa História"
    =================================================== */
+.historia-intro {
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  line-height: 1.75;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+.historia-intro p {
+  margin-bottom: 1rem;
+}
+.historia-intro p:last-child {
+  margin-bottom: 0;
+}
+
 .tl {
   max-width: 600px;
   margin: 2.5rem auto 1rem;
