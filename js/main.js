@@ -272,29 +272,22 @@
     });
     hideFeedback();
 
-    // Name
+    // Name (required)
     var name = rsvpForm.querySelector('[name="nome"]');
     if (!name.value.trim()) {
       name.classList.add('is-invalid');
       isValid = false;
     }
 
-    // Email
+    // Email (optional, but validate format if filled)
     var email = rsvpForm.querySelector('[name="email"]');
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.value.trim() || !emailPattern.test(email.value.trim())) {
+    if (email.value.trim() && !emailPattern.test(email.value.trim())) {
       email.classList.add('is-invalid');
       isValid = false;
     }
 
-    // Adults
-    var adults = rsvpForm.querySelector('[name="adultos"]');
-    if (!adults.value || parseInt(adults.value) < 1) {
-      adults.classList.add('is-invalid');
-      isValid = false;
-    }
-
-    // Attendance
+    // Attendance (required)
     var attendance = rsvpForm.querySelector('[name="presenca"]:checked');
     if (!attendance) {
       isValid = false;
@@ -318,7 +311,7 @@
     var formData = {
       nome: rsvpForm.querySelector('[name="nome"]').value.trim(),
       email: rsvpForm.querySelector('[name="email"]').value.trim(),
-      adultos: rsvpForm.querySelector('[name="adultos"]').value,
+      telemovel: rsvpForm.querySelector('[name="telemovel"]').value.trim(),
       criancas: rsvpForm.querySelector('[name="criancas"]').value || '0',
       restricoes: rsvpForm.querySelector('[name="restricoes"]').value.trim(),
       presenca: rsvpForm.querySelector('[name="presenca"]:checked').value,
