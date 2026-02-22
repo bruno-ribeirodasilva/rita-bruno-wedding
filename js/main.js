@@ -517,19 +517,8 @@
   }
 
   /* -------------------------------------------------
-     8c. TIMELINE — Scroll reveal for items
+     8c. TIMELINE — (horizontal, no JS needed)
      ------------------------------------------------- */
-  var tlItems = document.querySelectorAll('.tl__item');
-  if (tlItems.length) {
-    var tlObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.3 });
-    tlItems.forEach(function (item) { tlObserver.observe(item); });
-  }
 
   /* -------------------------------------------------
      8d. EASTER EGG — Triple-click the logo

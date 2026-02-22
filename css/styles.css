@@ -1374,7 +1374,7 @@ a {
    =================================================== */
 .presentes {
   text-align: center;
-  padding: 1rem 0;
+  padding: 2.5rem 0;
 }
 
 .presentes__heading {
@@ -1396,21 +1396,21 @@ a {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(1.3rem, 3.5vw, 1.6rem);
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-forest);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-wrap: balance;
 }
 
 .presentes__sub {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.9;
   color: var(--color-forest);
   opacity: 0.65;
   margin-bottom: 3rem;
-  max-width: 420px;
+  max-width: 480px;
   margin-left: auto;
   margin-right: auto;
   text-wrap: balance;
@@ -1486,7 +1486,7 @@ a {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   flex-wrap: wrap;
 }
 
@@ -1567,185 +1567,122 @@ a {
    A NOSSA HISTÓRIA — Timeline grid
    =================================================== */
 /* ===================================================
-   TIMELINE — "Nossa História"
+   TIMELINE — Horizontal scroll "Nossa História"
    =================================================== */
 .tl {
-  max-width: 480px;
-  margin: 2rem auto 1rem;
+  position: relative;
+  margin: 2rem 0 1rem;
+  overflow: visible;
 }
 
-/* --- Fork: two birth branches side by side --- */
-.tl__fork {
+/* Scrollable track */
+.tl__track {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 0;
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 2rem 2rem;
+  scrollbar-width: none;
 }
 
-.tl__branch {
+.tl__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horizontal connecting line behind items */
+.tl__track::before {
+  content: '';
+  position: absolute;
+  top: calc(1rem + 1.2rem + 0.5rem);
+  left: 2rem;
+  right: 2rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-hotpink), var(--color-coral), var(--color-hotpink));
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* --- Each item --- */
+.tl__item {
+  flex: 0 0 auto;
+  width: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15rem;
-}
-
-.tl__branch .tl__emoji {
-  font-size: 1.6rem;
-}
-
-.tl__branch .tl__year {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--color-hotpink);
-}
-
-.tl__branch--bruno .tl__year {
-  color: var(--color-forest);
-}
-
-.tl__branch .tl__label {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.85rem;
-  color: var(--color-forest);
-}
-
-/* --- Merge SVG lines --- */
-.tl__merge-lines {
-  width: 100%;
-  height: 40px;
-  margin-bottom: -2px;
-}
-
-.tl__merge-lines svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* --- Main vertical line container --- */
-.tl__line {
+  text-align: center;
+  scroll-snap-align: center;
   position: relative;
-  padding-left: 2.5rem;
+  padding-top: 0;
 }
 
-/* Vertical line */
-.tl__line::before {
-  content: '';
-  position: absolute;
-  left: 1.1rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--color-coral), var(--color-hotpink));
-  border-radius: 1px;
-}
-
-/* --- Timeline items --- */
-.tl__item {
-  position: relative;
+/* Emoji circle */
+.tl__emoji {
+  font-size: 1.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.7rem 0;
-}
-
-/* Dot on the line */
-.tl__item::before {
-  content: '';
-  position: absolute;
-  left: -1.65rem;
-  top: 0.85rem;
-  width: 10px;
-  height: 10px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid var(--color-coral);
   border-radius: 50%;
-  background: var(--color-coral);
-  border: 2px solid var(--color-cream);
-  box-shadow: 0 0 0 2px var(--color-coral);
-  z-index: 1;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tl__item--highlight::before {
-  width: 12px;
-  height: 12px;
-  left: -1.72rem;
-  top: 0.8rem;
-  background: var(--color-hotpink);
-  box-shadow: 0 0 0 2px var(--color-hotpink), 0 0 10px rgba(194, 38, 86, 0.3);
+.tl__item:hover .tl__emoji {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px rgba(255, 108, 43, 0.2);
 }
 
-.tl__item--pet::before {
-  background: var(--color-sage);
-  box-shadow: 0 0 0 2px var(--color-sage);
+.tl__item--highlight .tl__emoji {
+  border-color: var(--color-hotpink);
+  background: rgba(246, 223, 226, 0.6);
+  box-shadow: 0 0 0 3px rgba(194, 38, 86, 0.1);
 }
 
-/* Emoji */
-.tl__item .tl__emoji {
-  font-size: 1.4rem;
-  flex-shrink: 0;
-  line-height: 1;
-  margin-top: 0.05rem;
+.tl__item--pet .tl__emoji {
+  border-color: var(--color-sage);
+  background: rgba(132, 155, 111, 0.1);
 }
 
-/* Info block */
-.tl__info {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.tl__date {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.72rem;
-  color: var(--color-hotpink);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
+/* Name */
 .tl__name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   color: var(--color-forest);
-  line-height: 1.3;
+  line-height: 1.25;
+  margin-bottom: 0.15rem;
 }
 
+/* Subtitle */
 .tl__sub {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--color-forest);
-  opacity: 0.6;
-  line-height: 1.35;
+  opacity: 0.55;
+  line-height: 1.3;
+  margin-bottom: 0.15rem;
 }
 
-/* Pet items: subtle sage accent */
+/* Date */
+.tl__date {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.65rem;
+  color: var(--color-hotpink);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: auto;
+}
+
 .tl__item--pet .tl__date {
   color: var(--color-sage);
-}
-
-/* Scroll-reveal animation */
-.tl__item {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.tl__item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Mobile tweaks --- */
-@media (max-width: 599px) {
-  .tl {
-    max-width: 100%;
-    padding: 0 0.5rem;
-  }
-
-  .tl__line {
-    padding-left: 2.2rem;
-  }
 }
 
 /* ===================================================
@@ -2149,8 +2086,9 @@ a {
 }
 
 /* Timeline dark overrides */
-[data-theme="dark"] .tl__line::before {
-  background: linear-gradient(180deg, #c22656, #c22656);
+[data-theme="dark"] .tl__emoji {
+  background: rgba(61, 104, 71, 0.4);
+  border-color: #c22656;
 }
 
 /* Floating name cloud */
