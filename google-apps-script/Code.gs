@@ -68,6 +68,7 @@ function handleRSVP(data) {
     new Date(),             // Timestamp
     data.nome || '',        // Nome
     data.email || '',       // Email
+    data.telemovel || '',   // Telemóvel
     data.adultos || '',     // Adultos
     data.criancas || '0',   // Crianças
     data.restricoes || '',  // Restrições alimentares
@@ -80,6 +81,7 @@ function handleRSVP(data) {
     var subject = 'Novo RSVP: ' + (data.nome || 'Sem nome');
     var body = 'Nome: ' + data.nome + '\n'
       + 'Email: ' + data.email + '\n'
+      + 'Telemóvel: ' + (data.telemovel || '-') + '\n'
       + 'Adultos: ' + data.adultos + '\n'
       + 'Crianças: ' + data.criancas + '\n'
       + 'Restrições: ' + (data.restricoes || 'Nenhuma') + '\n'
