@@ -1101,28 +1101,52 @@ a {
   font-weight: 700;
   font-size: 1.15rem;
   color: var(--color-hotpink);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
-.hotel-card__address {
+.hotel-card__type {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-forest);
+  margin-bottom: 0.2rem;
+}
+
+.hotel-card__rooms {
   font-family: var(--font-body);
   font-weight: 400;
+  font-size: 0.85rem;
   color: var(--color-forest);
-  opacity: 0.7;
-  margin-bottom: 0.25rem;
+  opacity: 0.65;
+  margin-bottom: 0.75rem;
+}
+
+.hotel-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.hotel-card__price {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-coral);
 }
 
 .hotel-card__distance {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--color-coral);
-  margin-bottom: 1rem;
+  font-size: 0.82rem;
+  color: var(--color-forest);
+  opacity: 0.55;
 }
 
 .hotel-card__link {
   font-family: var(--font-body);
   font-weight: 600;
+  font-size: 0.9rem;
   color: var(--color-forest);
   transition: opacity 0.2s ease;
 }
@@ -2272,10 +2296,10 @@ a {
     bottom: 1.2rem;
   }
 
-  /* Hero image — centered on mobile, faces visible below CTA */
+  /* Hero image — zoomed on faces, centered on mobile */
   .hero__bg-img {
-    transform: scale(1.15);
-    object-position: center 90%;
+    transform: scale(1.8);
+    object-position: center 95%;
   }
 
   /* Theme toggle — smaller, out of the way */
@@ -2377,22 +2401,34 @@ a {
   }
 
   .hotel-card {
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 12px;
   }
 
   .hotel-card__name {
-    font-size: 0.88rem;
-    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
   }
 
-  .hotel-card__address {
+  .hotel-card__type {
+    font-size: 0.85rem;
+  }
+
+  .hotel-card__rooms {
     font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .hotel-card__meta {
+    margin-bottom: 0.75rem;
+  }
+
+  .hotel-card__price {
+    font-size: 0.9rem;
   }
 
   .hotel-card__distance {
     font-size: 0.78rem;
-    margin-bottom: 0.5rem;
   }
 
   .hotel-card__link {
