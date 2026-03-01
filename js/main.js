@@ -554,4 +554,21 @@
       preloader.classList.add('is-loaded');
     }
   });
+
+  /* -------------------------------------------------
+     HOTELS SPOILER — auto-open on desktop
+     ------------------------------------------------- */
+  var hotelsSpoiler = document.querySelector('.hotels-spoiler');
+  if (hotelsSpoiler) {
+    var mq = window.matchMedia('(min-width: 768px)');
+    function syncSpoiler(e) {
+      if (e.matches) {
+        hotelsSpoiler.setAttribute('open', '');
+      } else {
+        hotelsSpoiler.removeAttribute('open');
+      }
+    }
+    syncSpoiler(mq);
+    mq.addEventListener('change', syncSpoiler);
+  }
 })();
