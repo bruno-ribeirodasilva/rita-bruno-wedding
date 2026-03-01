@@ -2272,9 +2272,10 @@ a {
     bottom: 1.2rem;
   }
 
-  /* Hero image — centered on mobile */
+  /* Hero image — centered on mobile, faces above CTA */
   .hero__bg-img {
     transform: scale(1.15);
+    object-position: center 65%;
   }
 
   /* Theme toggle — smaller, out of the way */
