@@ -2272,10 +2272,24 @@ a {
     bottom: 1.2rem;
   }
 
-  /* Marquee — smaller thumbnails */
+  /* Hero image — centered on mobile */
+  .hero__bg-img {
+    transform: scale(1.15);
+  }
+
+  /* Theme toggle — smaller, out of the way */
+  .theme-toggle {
+    bottom: 1rem;
+    right: 1rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  /* Marquee — bigger thumbnails */
   .marquee__img {
-    height: 90px;
-    width: 135px;
+    height: 110px;
+    width: 165px;
     border-radius: 6px;
   }
 
@@ -2343,14 +2357,15 @@ a {
   }
 
   .location-card__map {
-    margin-bottom: 0.6rem;
-  }
-
-  .location-card__map iframe {
-    height: 180px !important;
+    display: none;
   }
 
   .location-card__link {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    background: rgba(50, 86, 59, 0.08);
+    border-radius: 8px;
     font-size: 0.82rem;
   }
 
@@ -2547,7 +2562,9 @@ a {
   }
 
   .footer__contacts a {
-    font-size: 0.82rem;
+    font-size: 0.9rem;
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
   }
 
   .footer__made {
