@@ -548,7 +548,7 @@ a {
   background: linear-gradient(
     180deg,
     rgba(246, 223, 226, 0.4) 0%,
-    rgba(246, 223, 226, 0.5) 40%,
+    rgba(246, 223, 226, 0.55) 40%,
     rgba(246, 223, 226, 0.65) 100%
   );
   z-index: 1;
@@ -1663,19 +1663,11 @@ a {
   margin: 0 auto;
 }
 .historia-intro {
-  flex: 0 0 260px;
-  padding: 1rem 1.2rem;
-  background: rgba(255,255,255,0.55);
-  border-left: 3px solid var(--color-primary, #c9a87c);
-  border-radius: 4px;
-  text-align: left;
-  line-height: 1.55;
-  font-size: 0.78rem;
-  color: var(--color-text);
-  opacity: 0.82;
-  font-style: italic;
+  flex: 0 0 240px;
   position: sticky;
-  top: 5rem;
+  top: 7rem;
+  border-radius: 16px;
+  overflow: hidden;
 }
 .historia-intro p {
   margin-bottom: 0.5rem;
