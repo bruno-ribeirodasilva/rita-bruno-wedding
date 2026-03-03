@@ -455,6 +455,12 @@ a {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Kill backdrop-filter when menu is open — prevents containing block issue */
+.navbar.is-menu-open {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
 /* Mobile overlay */
 .navbar__links.is-open {
   display: flex;
@@ -541,9 +547,9 @@ a {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(246, 223, 226, 0.55) 0%,
-    rgba(246, 223, 226, 0.7) 40%,
-    rgba(246, 223, 226, 0.85) 100%
+    rgba(246, 223, 226, 0.4) 0%,
+    rgba(246, 223, 226, 0.5) 40%,
+    rgba(246, 223, 226, 0.65) 100%
   );
   z-index: 1;
 }
@@ -559,7 +565,7 @@ a {
 
 @keyframes heroGlow {
   0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
-  100% { transform: scale(1.15) translate(3%, 3%); opacity: 1; }
+  100% { transform: scale(1.15) translate(5%, 5%); opacity: 1; }
 }
 
 .hero__content {
@@ -1490,7 +1496,7 @@ a {
   color: var(--color-forest);
   opacity: 0.65;
   margin-bottom: 3rem;
-  max-width: 480px;
+  max-width: 550px;
   margin-left: auto;
   margin-right: auto;
   text-wrap: balance;

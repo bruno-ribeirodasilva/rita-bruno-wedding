@@ -156,6 +156,7 @@
   function toggleMobileMenu() {
     const isOpen = hamburger.classList.toggle('is-open');
     navLinksEl.classList.toggle('is-open');
+    navbar.classList.toggle('is-menu-open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   }
