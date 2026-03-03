@@ -288,14 +288,14 @@
       isValid = false;
     }
 
-    // Attendance (required)
-    var attendance = rsvpForm.querySelector('[name="presenca"]:checked');
-    if (!attendance) {
+    // Phone (required)
+    var phone = rsvpForm.querySelector('[name="telemovel"]');
+    if (!phone.value.trim()) {
+      phone.classList.add('is-invalid');
       isValid = false;
-      showFeedback('Por favor, indica se confirmas a tua presença.', 'error');
     }
 
-    if (!isValid && !feedback.textContent) {
+    if (!isValid) {
       showFeedback('Por favor, preenche todos os campos obrigatórios.', 'error');
     }
 
@@ -315,7 +315,7 @@
       telemovel: rsvpForm.querySelector('[name="telemovel"]').value.trim(),
       criancas: rsvpForm.querySelector('[name="criancas"]').value || '0',
       restricoes: rsvpForm.querySelector('[name="restricoes"]').value.trim(),
-      presenca: rsvpForm.querySelector('[name="presenca"]:checked').value,
+      presenca: 'sim',
       mensagem: rsvpForm.querySelector('[name="mensagem"]').value.trim(),
     };
 
